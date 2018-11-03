@@ -1,19 +1,18 @@
 # Mag.net
 
-## Authors:
+**Author**:
 
-* Nicholas Crain [NJcrain] (https://github.com/NJcrain)
-* Carlos Castillo [castillocarlosr] (https://github.com/castillocarlosr)
-* Charles Clemens [CClemensJr] (https://github.com/CClemensJr)
-* Hiwot Nega [Manaye] (https://github.com/Manaye)
+# Nicholas Crain   https://github.com/NJcrain
+# Charles Clements https://github.com/castillocarlosr
+#Charlos Castillo  https://github.com/CCLemensJr
+#Hiwot Nega     https://github.com/Manaye
 
 
-## Description 
+A description 
 
 ** Mag.Net is a fun way to leave messages for your friends.
 
-## Version: 
-    1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Frameworks and Libraries
     Nodejs,jquery and  packaeg.json 
