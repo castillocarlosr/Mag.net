@@ -1,0 +1,27 @@
+{
+  "name": "mag.net",
+  "version": "1.0.0",
+  "description": "friday proof of life",
+  "main": "server.js",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "pg": "^7.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manaye/Mag.net.git"
+  },
+  "author": "Nick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Manaye/Mag.net/issues"
+  },
+  "homepage": "https://github.com/Manaye/Mag.net#readme"
+}
