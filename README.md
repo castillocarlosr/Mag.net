@@ -1,23 +1,26 @@
 # Mag.net
 
-**Author**:
+## Authors:
 
-# Nicholas Crain   https://github.com/NJcrain
-# Charles Clements https://github.com/castillocarlosr
-#Charlos Castillo  https://github.com/CCLemensJr
-#Hiwot Nega     https://github.com/Manaye
+* Nicholas Crain [NJcrain] (https://github.com/NJcrain)
+* Carlos Castillo [castillocarlosr] (https://github.com/castillocarlosr)
+* Charles Clemens [CClemensJr] (https://github.com/CClemensJr)
+* Hiwot Nega [Manaye] (https://github.com/Manaye)
 
 
-A description 
+## Description 
 
-** Mag.Net is a fun way to leave messages for your friends.
+    Mag.Net is a fun way to leave messages for your friends.
 
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+## Version: 
+    1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Frameworks and Libraries
-    Nodejs,jquery and  packaeg.json 
+    * Node.js
+    * jQuery
+    
 ## Database Schemas
-     maginate.sql
+     
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
 ## Architecture
