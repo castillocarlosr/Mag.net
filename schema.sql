@@ -1,0 +1,22 @@
+DROP TABLE IF EXISTS magnets;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS magnet_types;
+
+CREATE TABLE magnet_types (
+id SERIAL PRIMARY KEY,
+type VARCHAR(255)
+);
+
+CREATE TABLE magnets (
+id SERIAL PRIMARY KEY,
+content VARCHAR(255),
+x INTEGER,
+y INTEGER,
+type_id INTEGER NOT NULL REFERENCES magnet_types(id)
+);
+
+
+CREATE TABLE users (
+id SERIAL PRIMARY KEY,
+username VARCHAR(255)
+);
