@@ -16,12 +16,13 @@ app.use(express.static('public'));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`app is up on${PORT}`));
 
-app.get('/', loadBook);
+
+app.get('/', (req, res) => res.render('./index.ejs'));
 
 
-function loadBook(req, res) {
-  client.query('SELECT * FROM saved;')
-    .then( results => {
-      res.render('./index.ejs', {data: results.rows[0]});
-    })
-}
+//function loadBook(req, res) {
+//   client.query('SELECT * FROM saved;')
+//     .then( results => {
+//       res.render('./index.ejs', {data: results.rows[0]});
+//     })
+// }
