@@ -1,3 +1,27 @@
 body {
-    background: aqua;
+    background:#deeaee;
+}
+.form-container{
+    width: 500px;
+    margin: 0 auto;
+    color: #777;
+}
+form{
+    width: 100%;
+
+
+}
+form input{
+    margin: 10px;
+}
+header .burger{
+    float: right;
+}
+
+@media screen and (max-width: 320){
+    .form-container{
+        width: 100%;
+        margin: 0 auto;
+        
+    }
 }
