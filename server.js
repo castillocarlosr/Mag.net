@@ -22,10 +22,11 @@ app.listen(port, () => console.log(`Server running on port:${port}`));
 app.get('/', (req, res) => res.render('./index.ejs'));
 // app.get('/', loadUser);
 // app.get('/', loadMagnets);
-app.get('/login',login);
-app.get('/sign-up',sign_up);
+// app.get('/login',login);
+// app.get('/sign-up',sign_up);
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
 app.get('/test', renderTest);
+app.post('/test', registerUser)
 
 // app.post('/meme', fetchMemeAPI)
 //This retrieves and returns data from Meme API
@@ -111,8 +112,13 @@ Magnet.prototype.save = function() {
   client.query(SQL, values);
 }
 
-function sign_up(req, res){
-  res.render('pages/registration');
+function registerUser(req, res){
+  // console.log(Object.values(req.body));
+  const SQL = `INSERT INTO users (username, email) VALUES ($1, $2);`;
+  const values = Object.values(req.body);
+  client.query(SQL, values)
+    .then(() => res.redirect('/'))
+  
 }
 function login(req, res){
   res.render('pages/login');
@@ -121,8 +127,8 @@ function login(req, res){
 //=====-----++++++ Render Test
 function renderTest(req, res){
 
-  loadMagnets();
-  res.render('pages/community/show.ejs');
+  // loadMagnets();
+  res.render('pages/registration.ejs');
 
 }
 
