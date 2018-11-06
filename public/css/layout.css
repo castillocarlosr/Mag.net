@@ -137,7 +137,16 @@
    justify-self: stretch;
   }
 
+main figure{
+  display: grid;
+  grid-template-columns: .5fr 3fr .5fr;
+  grid-template-rows: 5fr ;
+ }
 
+main #fridgeImg{
+  grid-column:2 ;
+  
+}
   /*********************
   *** FOOTER LAYOUTS
   **********************/
@@ -168,11 +177,6 @@
   }
 }
 
-
-
-
-
-
 .form-container{
   width: 500px;
   margin: 0 auto;
@@ -187,7 +191,7 @@ form{
 form input{
   margin: 10px;
 }
-header,footer{
+/* header,footer{
   background-color:#034f84;
 }
 header {
@@ -197,13 +201,13 @@ header {
   height: 50px;
   
   
-}
-header h1 {
+} */
+/* header h1 {
   text-align: center;
   margin-top: 10px;
   color: white;
-}
-footer{
+} */
+/* footer{
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -214,7 +218,7 @@ footer p {
 padding: 10px;
 text-align: center;
 color: white;
-}
+} */
 
 .form-container{
   width: 100%;

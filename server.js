@@ -120,8 +120,10 @@ function login(req, res){
 
 //=====-----++++++ Render Test
 function renderTest(req, res){
-  fetchWordAPI(req, res);
-  res.send('check the DB');
+
+  fetchMemeAPI(req, res);
+  res.render('pages/community/show.ejs');
+
 }
 
 // For errrors
