@@ -41,10 +41,6 @@ nav section:last-of-type {
   padding-top: 1%;
 } */
 
-header {
-  grid-column-start: 1;
-}
-
 
 /*********************
 *** MAIN LAYOUTS
@@ -146,5 +142,41 @@ footer section:nth-of-type(3) img{
 **********************/
 
 @media all and (max-width: 767px) {
+
+  body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: .5fr 2fr 1fr 1fr 1fr .5fr;
+  }
+
+  header {
+    background: red;
+    grid-row-start: 1;
+  }
+
+  main section:first-child {
+    background: blue;
+    grid-row-start: 2;
+  }
+
+  main section:nth-child(2) section:first-of-type {
+    background: purple;
+    grid-row-start: 3;
+  }
+
+  main section:nth-child(2) section:nth-child(2) {
+    background: teal;
+    grid-row-start: 4;
+  }
+
+  main section:nth-child(2) section:last-of-type {
+    background: burlywood;
+    grid-row-start: 5;
+  }
+
+  footer {
+    background: yellow;
+    grid-row-start: 6;
+  }
 
 }
