@@ -24,7 +24,8 @@ app.get('/', (req, res) => res.render('./index.ejs'));
 // app.get('/', loadMagnets);
 app.get('/login',login);
 app.get('/sign-up',sign_up);
-
+//+++++____--------+++++++====---change what to render in renderTest function to test pages
+app.get('/test', renderTest);
 
 // app.post('/meme', fetchMemeAPI)
 //This retrieves and returns data from Meme API
@@ -98,6 +99,11 @@ function sign_up(req, res){
 }
 function login(req, res){
   res.render('pages/login');
+}
+
+//=====-----++++++ Render Test
+function renderTest(req, res){
+  res.render('empty qoutes for now');
 }
 
 // For errrors
