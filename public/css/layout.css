@@ -149,6 +149,7 @@ footer section:nth-of-type(3) img{
 
   body {
     display: grid;
+    grid-row-gap: 1vh;
     grid-template-columns: 1fr;
     grid-template-rows: .5fr 2fr 1fr 1fr 1fr .5fr;
   }
@@ -163,7 +164,7 @@ footer section:nth-of-type(3) img{
   }
 
   header nav {
-    border: 5px solid black;
+    border: 1px solid black;
     display: grid;
     font-size: larger;
     grid-template-columns: .5fr 2.5fr 2.5fr .5fr;
@@ -200,12 +201,14 @@ footer section:nth-of-type(3) img{
   **********************/
 
   main  {
+    grid-row-gap: 1vh;
     grid-row-start: 2;
   }
 
   main section:first-child {
-    border: 2.5px solid black;
+    border: 1px solid black;
     display: grid;
+    grid-row-gap: 1vh;
     grid-template-columns: .5fr 5fr .5fr;
     position: relative;
     
@@ -224,33 +227,39 @@ footer section:nth-of-type(3) img{
     justify-self: stretch;
   }
 
-  main section:nth-child(2) section:first-of-type {
-    background: purple;
-    border: 2.5px solid black;
-    grid-column: 2 / span 1;
-    grid-row-start: 2;
+  main section:last-child {
+    border: 1px solid black;
+    display: grid;
+    grid-row-gap: 1vh;
+    grid-template-columns: .5fr 3fr .5fr;
+    justify-items: center;
   }
 
-  main section:nth-child(2) section:nth-child(2) {
-    background: teal;
-    border: 2.5px solid black;
-    grid-column: 2 / span 1;
-    grid-row-start: 3;
+  main section:last-child div {
+    border: 1px solid gray;
+    display: grid;
+    grid-column-start: 2;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
   }
 
-  main section:nth-child(2) section:last-of-type {
-    background: burlywood;
-    border: 2.5px solid black;
-    grid-column: 2 / span 1;
-    grid-row-start: 5;
+  main section:last-child div h2 {
+    font-size: 3vh;
+    grid-column: 1 / span 3;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
   }
 
+  main section:last-child div img {
+   grid-column: 1 / span 3;
+   justify-self: stretch;
+  }
 
 
 
   footer {
     background: yellow;
-    grid-row-start: 6;
+    grid-row-start: 3;
   }
 
 }
