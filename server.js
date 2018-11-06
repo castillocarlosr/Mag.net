@@ -69,15 +69,15 @@ function loadMagnets(req, res) {
   // let types = 0;
   let magnets = {
     alphabet: [],
-    word: [],
-    meme: []
+    meme: [],
+    word: []
   }
   client.query(`SELECT content, x, y, type FROM magnets JOIN magnet_types ON magnets.type_id=magnet_types.id`)
     .then( result =>{
       result.rows.forEach(element =>{
         magnets[element.type].push(element)
       })
-      console.log(magnets);
+      console.log(Object.values(magnets));
       // res.render('/ejsSomething', magnets);
       //TODO: CARLOS make sure you uncomment above and put an ACTUAL link to pages/
 
@@ -85,7 +85,7 @@ function loadMagnets(req, res) {
       // console.log(magArray);
     })
     .catch(err => handleError(err, res));
-  res.send('Howdy again');
+  // res.send('Howdy again');
 }
 
 function loadUser(req, res) {
@@ -121,7 +121,7 @@ function login(req, res){
 //=====-----++++++ Render Test
 function renderTest(req, res){
 
-  fetchMemeAPI(req, res);
+  loadMagnets();
   res.render('pages/community/show.ejs');
 
 }
