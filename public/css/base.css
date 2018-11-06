@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    text-decoration-color: darkgrey;
+    text-decoration-line: none;
 }
 
 html, body {
