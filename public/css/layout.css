@@ -149,10 +149,43 @@ footer section:nth-of-type(3) img{
     grid-template-rows: .5fr 2fr 1fr 1fr 1fr .5fr;
   }
 
+
+
   header {
-    background: red;
     grid-row-start: 1;
   }
+
+  header nav {
+    border: 5px solid black;
+    display: grid;
+    font-size: larger;
+    grid-template-columns: .5fr 2.5fr 2.5fr .5fr;
+    padding: 2vh;
+  }
+
+  header nav section:first-of-type {
+    align-self: center;
+    border: 1px dashed aquamarine;
+    grid-column: 2 / span 1;
+    justify-self: start;
+  }
+
+  header nav section:first-of-type a {
+    border: 1px dashed aquamarine;
+  }
+
+  header nav section:last-of-type {
+    align-self: center;
+    border: 1px dashed aqua;
+    grid-column: 3 / span 1;
+    justify-self: end;
+  }
+
+  header nav section:last-of-type a {
+    border: 1px dashed aqua;
+  }
+
+
 
   main section:first-child {
     background: blue;
@@ -173,6 +206,9 @@ footer section:nth-of-type(3) img{
     background: burlywood;
     grid-row-start: 5;
   }
+
+
+
 
   footer {
     background: yellow;
