@@ -47,6 +47,23 @@ function fetchMemeAPI(req, res) {
     .catch(err => handleError(err, res));
 }
 
+function fetchWordAPI(req, res) {
+  const word_URL = `https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb%2C%20adverb&minCorpusCount=10000&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=3&maxLength=8&limit=30&api_key=${process.env.WORD_API_KEY}`;
+
+  return superagent.get(word_URL)
+    .then(results => {
+      if (results.body.length) {
+        results.body.forEach(word => {
+          let mag = new Magnet(word.word.toLowerCase(), 10, 12, 3);
+          mag.save();
+        });
+      } else {
+        throw 'no word results returned...sorry'
+      }
+    })
+    .catch(err => handleError(err, res));
+}
+
 function loadMagnets(req, res) {
   // const magArray = [];
   // let types = 0;
@@ -103,8 +120,10 @@ function login(req, res){
 
 //=====-----++++++ Render Test
 function renderTest(req, res){
+
   fetchMemeAPI(req, res);
   res.render('pages/community/show.ejs');
+
 }
 
 // For errrors
