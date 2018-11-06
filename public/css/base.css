@@ -1,3 +1,55 @@
 body {
-    background: aqua;
+    margin: 0;
+    padding: 0;
+    background:#deeaee;
+}
+.form-container{
+    width: 500px;
+    margin: 0 auto;
+    color: #777;
+}
+form{
+    width: 100%;
+    margin: 60px;
+
+
+}
+form input{
+    margin: 10px;
+}
+header,footer{
+    background-color:#034f84;
+}
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    
+    
+}
+header h1 {
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+}
+footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    
+
+}
+footer p {
+padding: 10px;
+text-align: center;
+color: white;
+}
+
+@media screen and (max-width: 320){
+    .form-container{
+        width: 100%;
+        margin: 0 auto;
+        
+    }
 }

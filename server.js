@@ -12,15 +12,19 @@ client.on('err', err => console.log(err));
 
 let app = express();
 app.set('view engine','ejs');
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(cors());
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`app is up on${PORT}`));
 
+
+const port = process.env.PORT || 8989;
+app.listen(port, () => console.log(`Server running on port:${port}`));
+ 
 // app.get('/', loadUser);
 app.get('/', loadMagnets);
+app.get('/login',login);
+app.get('/sign-up',sign_up);
 
 
 // app.post('/meme', fetchMemeAPI)
@@ -90,10 +94,16 @@ Magnet.prototype.save = function() {
   client.query(SQL, values);
 }
 
+function sign_up(req, res){
+  res.render('pages/registration');
+}
+function login(req, res){
+  res.render('pages/login');
+}
+
 // For errrors
 function handleError(err, res) {
   console.log('Oh oh error! Try unpluggin then pluggin back in', err);
   res.render('pages/error');
 }
-
 
