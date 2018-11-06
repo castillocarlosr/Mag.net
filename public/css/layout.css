@@ -1,21 +1,22 @@
 /*********************
 *** GENERAL
 **********************/
-body {
+/* body {
   background: red;
   display: flex;
   flex-direction: column;
   padding: 0 10% 2% 10%;
-}
+} */
 
 
 /*********************
 *** HEADER LAYOUTS
 **********************/
-header {
+/* header {
   background: yellow;
   display: flex;
   flex-direction: row;
+  height: 10%;
 }
 
 nav {
@@ -23,29 +24,54 @@ nav {
   display: flex;
   flex-basis: 100%;
   flex-direction: row;
-  height: 5vh;
+  height: 100%;
   justify-content: space-between;
-  line-height: 5vh;
+  line-height: 100%;
 }
 
 nav section:first-of-type {
   background: blue;
-  height: 100%;
+  padding-bottom: 1%;
+  padding-top: 1%;
 }
 
 nav section:last-of-type {
   background: orange;
-  height: 100%;
-}
+  padding-bottom: 1%;
+  padding-top: 1%;
+} */
 
+header {
+  grid-column-start: 1;
+}
 
 
 /*********************
 *** MAIN LAYOUTS
 **********************/
-main {
-
+/* main {
+  background: purple;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
 }
+
+main section:first-of-type {
+  background: aliceblue;
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+main section:last-of-type {
+  background: aqua;
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+} */
 
 
 
@@ -53,16 +79,15 @@ main {
 /*********************
 *** FOOT LAYOUTS
 **********************/
-footer {
+/* footer {
+  align-items: flex-start;
   background: yellow;
   display: flex;
-  flex-basis: 100%;
   flex-direction: row;
   flex-wrap: nowrap;
   font-size: 1.5vh;
-  height: 5vh;
+  height: 10%;
   justify-content: space-between;
-  line-height: 5vh;
 }
 
 footer section:first-of-type {
@@ -90,4 +115,36 @@ footer section:last-of-type {
 
 footer section:nth-of-type(3) img{
   width: 4vh;
+} */
+
+
+
+
+/*********************
+*** DESKTOP
+**********************/
+
+@media all and (min-width: 992px) {
+
+}
+
+
+
+/*********************
+*** TABLET
+**********************/
+
+@media all and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+
+
+
+/*********************
+*** MOBILE
+**********************/
+
+@media all and (max-width: 767px) {
+
 }
