@@ -22,10 +22,18 @@ app.listen(port, () => console.log(`Server running on port:${port}`));
 app.get('/', (req, res) => res.render('./index.ejs'));
 // app.get('/', loadUser);
 // app.get('/', loadMagnets);
-app.get('/login',login);
-app.get('/sign-up',sign_up);
+app.get('/login',(req, res)=>{
+  res.render('/pages/login.ejs')
+});
+app.post('/login', loginUser);
+app.get('/register',(req, res)=>{
+  res.render('/pages/registration.ejs')
+});
+app.post('/register', registerUser);
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
-app.get('/test', renderTest);
+// app.get('/test', renderTest);
+// app.post('/test', registerUser)
+// app.post('/test', loginUser)
 
 // app.post('/meme', fetchMemeAPI)
 //This retrieves and returns data from Meme API
@@ -69,15 +77,15 @@ function loadMagnets(req, res) {
   // let types = 0;
   let magnets = {
     alphabet: [],
-    word: [],
-    meme: []
+    meme: [],
+    word: []
   }
   client.query(`SELECT content, x, y, type FROM magnets JOIN magnet_types ON magnets.type_id=magnet_types.id`)
     .then( result =>{
       result.rows.forEach(element =>{
         magnets[element.type].push(element)
       })
-      console.log(magnets);
+      console.log(Object.values(magnets));
       // res.render('/ejsSomething', magnets);
       //TODO: CARLOS make sure you uncomment above and put an ACTUAL link to pages/
 
@@ -85,7 +93,7 @@ function loadMagnets(req, res) {
       // console.log(magArray);
     })
     .catch(err => handleError(err, res));
-  res.send('Howdy again');
+  // res.send('Howdy again');
 }
 
 function loadUser(req, res) {
@@ -111,18 +119,47 @@ Magnet.prototype.save = function() {
   client.query(SQL, values);
 }
 
-function sign_up(req, res){
-  res.render('pages/registration');
+function registerUser(req, res){
+  // console.log(Object.values(req.body));
+  let SQL = `SELECT * FROM users WHERE username=$1 OR email=$2`;
+  let values = Object.values(req.body);
+  client.query(SQL, values)
+    .then(results =>{
+      if(results.rowCount){
+        // alert.show('User name or email already taken.  Try again.  Sorry....')
+        res.status(500).send('User name or email already taken.  Try again.  Sorry....')
+      }
+      else{
+        SQL = `INSERT INTO users (username, email) VALUES ($1, $2);`;
+        client.query(SQL, values)
+          .then(() => res.redirect('/'))
+      }
+    })
 }
-function login(req, res){
-  res.render('pages/login');
+
+function loginUser(req, res){
+  console.log(req.body);
+  let SQL = `SELECT username FROM users WHERE email=$1`;
+  let values = Object.values(req.body);
+  client.query(SQL, values)
+    .then(results =>{
+      if(results.rowCount){
+        /////will login to the fridge page
+        res.redirect('/');
+        // SQL = `SELECT * FROM magnets`
+      }
+      else{
+        res.status(500).send('email is not registerd.  Go to registration page or check spelling')
+      }
+    })
+  // res.render('pages/login');
 }
 
 //=====-----++++++ Render Test
 function renderTest(req, res){
 
-  fetchMemeAPI(req, res);
-  res.render('pages/community/show.ejs');
+  // loadMagnets();
+  res.render('pages/login.ejs');
 
 }
 
