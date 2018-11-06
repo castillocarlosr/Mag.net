@@ -114,13 +114,24 @@ Magnet.prototype.save = function() {
 
 function registerUser(req, res){
   // console.log(Object.values(req.body));
-  const SQL = `INSERT INTO users (username, email) VALUES ($1, $2);`;
-  const values = Object.values(req.body);
+  let SQL = `SELECT * FROM users WHERE username=$1 OR email=$2`;
+  let values = Object.values(req.body);
   client.query(SQL, values)
-    .then(() => res.redirect('/'))
-  
+    .then(results =>{
+      if(results.rowCount){
+        // alert.show('User name or email already taken.  Try again.  Sorry....')
+        res.status(500).send('User name or email already taken.  Try again.  Sorry....')
+      }
+      else{
+        SQL = `INSERT INTO users (username, email) VALUES ($1, $2);`;
+        client.query(SQL, values)
+          .then(() => res.redirect('/'))
+      }
+    })
 }
-function login(req, res){
+
+function loginUser(req, res){
+
   res.render('pages/login');
 }
 
