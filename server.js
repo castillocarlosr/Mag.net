@@ -18,7 +18,7 @@ app.use(cors());
 
 const port = process.env.PORT || 8989;
 app.listen(port, () => console.log(`Server running on port:${port}`));
- 
+
 app.get('/', (req, res) => res.render('./index.ejs'));
 // app.get('/', loadUser);
 // app.get('/', loadMagnets);
@@ -33,18 +33,18 @@ function fetchMemeAPI(req, res) {
   const meme_URL = `https://api.imgflip.com/get_memes`;
   return superagent.get(meme_URL)
     .then(results => {
-      if (results.data.memes.length > 0) {
-        const formattedResults = results.data.memes.slice(4, 8).map(result => {
-          return new Magnet(result.url, 6, 7, 2);
-          // return new Magnet(result.url, x, y, 2);
+      // console.log(results.body.data.memes);
+      if (results.body.data.memes.length > 0) {
+        results.body.data.memes.slice(4, 8).forEach(result => {
+          let mag = new Magnet(result.url, 6, 7, 2);
+          mag.save();
         });
-        return res.render('pages/searches/show', { memes: formattedResults});
+        // return res.render('pages/searches/show', { memes: formattedResults});
       } else {
         throw 'no results returned...sorry';
       }
     })
     .catch(err => handleError(err, res));
-
 }
 
 function loadMagnets(req, res) {
@@ -103,7 +103,8 @@ function login(req, res){
 
 //=====-----++++++ Render Test
 function renderTest(req, res){
-  res.render('empty qoutes for now');
+  fetchMemeAPI(req, res);
+  res.send('check the DB');
 }
 
 // For errrors
