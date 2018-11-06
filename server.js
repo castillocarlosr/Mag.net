@@ -16,20 +16,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(cors());
 
-
-
-app.get('/', (req, res) => res.render('./index.ejs'));
-
-
-//function loadBook(req, res) {
-//   client.query('SELECT * FROM saved;')
-//     .then( results => {
-//       res.render('./index.ejs', {data: results.rows[0]});
-//     })
-// }
 const port = process.env.PORT || 8989;
 app.listen(port, () => console.log(`Server running on port:${port}`));
  
+app.get('/', (req, res) => res.render('./index.ejs'));
 // app.get('/', loadUser);
 // app.get('/', loadMagnets);
 app.get('/login',login);
