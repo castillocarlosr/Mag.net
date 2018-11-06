@@ -7,7 +7,8 @@ type VARCHAR(255)
 
 CREATE TABLE IF NOT EXISTS users (
 id SERIAL PRIMARY KEY,
-username VARCHAR(255)
+username VARCHAR(255),
+email VARCHAR(255)
 );
 
 CREATE TABLE magnets (
