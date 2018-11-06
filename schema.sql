@@ -1,9 +1,13 @@
 DROP TABLE IF EXISTS magnets;
-DROP TABLE IF EXISTS magnet_types;
 
-CREATE TABLE magnet_types (
+CREATE TABLE IF NOT EXISTS magnet_types (
 id SERIAL PRIMARY KEY,
 type VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+id SERIAL PRIMARY KEY,
+username VARCHAR(255)
 );
 
 CREATE TABLE magnets (
@@ -15,7 +19,9 @@ type_id INTEGER NOT NULL REFERENCES magnet_types(id)
 );
 
 
-CREATE TABLE users (
-id SERIAL PRIMARY KEY,
-username VARCHAR(255)
-);
+INSERT INTO magnets (content, x, y, type_id) VALUES ('a', 150, 100, 1);
+INSERT INTO magnets (content, x, y, type_id) VALUES ('b', 140, 100, 1);
+INSERT INTO magnets (content, x, y, type_id) VALUES ('c', 160, 100, 1);
+INSERT INTO magnets (content, x, y, type_id) VALUES ('https://i.imgflip.com/1ur9b0.jpg', 130, 100, 2);
+INSERT INTO magnets (content, x, y, type_id) VALUES ('cow', 160, 100, 3);
+
