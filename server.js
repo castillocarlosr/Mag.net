@@ -12,7 +12,7 @@ app.use(express.static('public'));
 
 
 app.get('/',function(req, res){
-  res.send('it works!!');
+  res.render('index');
 })
 app.set('views', './views');
 app.set('view engine', 'ejs');
