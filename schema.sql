@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS magnets;
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS magnet_types;
 
 CREATE TABLE magnet_types (
