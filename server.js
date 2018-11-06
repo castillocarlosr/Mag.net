@@ -104,7 +104,7 @@ function login(req, res){
 //=====-----++++++ Render Test
 function renderTest(req, res){
   fetchMemeAPI(req, res);
-  res.send('check the DB');
+  res.render('pages/community/show.ejs');
 }
 
 // For errrors
