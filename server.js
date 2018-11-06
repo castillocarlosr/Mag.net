@@ -22,8 +22,8 @@ app.listen(port, () => console.log(`Server running on port:${port}`));
 app.get('/', (req, res) => res.render('./index.ejs'));
 // app.get('/', loadUser);
 // app.get('/', loadMagnets);
-app.get('/login',login);
-app.get('/sign-up',sign_up);
+app.get('/login', (req, res) => res.render('./pages/login.ejs'));
+app.get('/sign-up', (req, res) => res.render('./pages/registration.ejs'));
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
 app.get('/test', renderTest);
 
