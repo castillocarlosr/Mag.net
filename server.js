@@ -30,12 +30,13 @@ function fetchMemeAPI(req, res) {
   return superagent.get(meme_URL)
     .then(results => {
       if (results.data.memes.length > 0) {
-        const formattedResults = results.data.memes.slice(0, 20).map(result => {
-          return new memeResult(result);
+        const formattedResults = results.data.memes.slice(4, 8).map(result => {
+          return new Magnet(result.url, 6, 7, 2);
+          // return new Magnet(result.url, x, y, 2);
         });
         return res.render('pages/searches/show', { memes: formattedResults});
       } else {
-        throw 'no results returned';
+        throw 'no results returned...sorry';
       }
     })
     .catch(err => handleError(err, res));
@@ -56,7 +57,8 @@ function loadMagnets(req, res) {
         magnets[element.type].push(element)
       })
       console.log(magnets);
-      res.render('/ejsSomething', magnets);
+      // res.render('/ejsSomething', magnets);
+      //TODO: CARLOS make sure you uncomment above and put an ACTUAL link to pages/
 
       // magArray.push(result.rows);
       // console.log(magArray);
@@ -74,11 +76,18 @@ function loadUser(req, res) {
     .catch(err => handleError(err, res));
 }
 
-function Magnet(results){
+function Magnet(content, x, y, type_id){
   this.content = content;
   this.x = x;
   this.y = y;
-  this.magnet_types = magnet_types;
+  this.type_id = type_id;
+}
+
+Magnet.prototype.save = function() {
+  const SQL = `INSERT INTO magnets(content, x, y, type_id) VALUES ($1, $2, $3, $4);`;
+  const values = Object.values(this);
+
+  client.query(SQL, values);
 }
 
 // For errrors
