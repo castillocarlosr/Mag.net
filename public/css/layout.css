@@ -1,0 +1,223 @@
+/*********************
+*** DESKTOP
+**********************/
+
+@media all and (min-width: 992px) {
+
+}
+
+
+
+/*********************
+*** TABLET
+**********************/
+
+@media all and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+
+
+
+/*********************
+*** MOBILE
+**********************/
+
+@media all and (max-width: 767px) {
+
+  /*********************
+  *** GENERAL
+  **********************/
+
+  body {
+    display: grid;
+    grid-row-gap: 1vh;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: .5fr 2fr 1fr 1fr 1fr .5fr; */
+  }
+
+
+  /*********************
+  *** HEADER LAYOUTS
+  **********************/
+
+  header {
+    grid-row-start: 1;
+  }
+
+  header nav {
+    border: 1px solid black;
+    display: grid;
+    font-size: larger;
+    grid-template-columns: .5fr 2.5fr 2.5fr .5fr;
+    padding: 2vh;
+  }
+
+  header nav a {
+    color: darkslateblue;
+  }
+
+  header nav section:first-of-type {
+    align-self: center;
+    grid-column: 2 / span 1;
+    justify-self: start;
+  }
+
+  header nav section:first-of-type a {
+
+  }
+
+  header nav section:last-of-type {
+    align-self: center;
+    grid-column: 3 / span 1;
+    justify-self: end;
+  }
+
+  header nav section:last-of-type a {
+
+  }
+
+
+  /*********************
+  *** MAIN LAYOUTS
+  **********************/
+
+  main  {
+    grid-row-gap: 1vh;
+    grid-row-start: 2;
+  }
+
+  main section:first-child {
+    border: 1px solid black;
+    display: grid;
+    grid-row-gap: 1vh;
+    grid-template-columns: .5fr 5fr .5fr;
+    position: relative;
+    
+  }
+
+  main section:first-child h1 {
+    font-size: 5vh;
+    grid-column: 2 / span 2;
+    left: 0;
+    position: absolute;
+    top: 15vh;
+  }
+
+  main section:first-child img {
+    grid-column: 1 / span 3;
+    justify-self: stretch;
+  }
+
+  main section:last-child {
+    border: 1px solid black;
+    display: grid;
+    grid-row-gap: 1vh;
+    grid-template-columns: .5fr 3fr .5fr;
+    justify-items: center;
+  }
+
+  main section:last-child div {
+    border: 1px solid gray;
+    display: grid;
+    grid-column-start: 2;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+  }
+
+  main section:last-child div h2 {
+    font-size: 3vh;
+    grid-column: 1 / span 3;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+  }
+
+  main section:last-child div img {
+   grid-column: 1 / span 3;
+   justify-self: stretch;
+  }
+
+
+  /*********************
+  *** FOOTER LAYOUTS
+  **********************/
+
+  footer {
+    align-items: end;
+    border: 1px solid black;
+    display: grid;
+    font-size: 1.5vh;
+    grid-row-start: 3;
+    grid-template-columns: .5fr 1fr 1fr 1fr .5fr;
+  }
+
+  footer img {
+    width: 4vh;
+  }
+
+  footer section:first-of-type {
+    grid-column: 2;
+  }
+
+  footer section:nth-of-type(2) {
+    grid-column: 3;
+  } 
+
+  footer section:last-of-type {
+    grid-column: 4;
+  }
+}
+
+
+
+
+
+
+.form-container{
+  width: 500px;
+  margin: 0 auto;
+  color: #777;
+}
+form{
+  width: 100%;
+  margin: 60px;
+
+
+}
+form input{
+  margin: 10px;
+}
+header,footer{
+  background-color:#034f84;
+}
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  
+  
+}
+header h1 {
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+}
+footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  
+
+}
+footer p {
+padding: 10px;
+text-align: center;
+color: white;
+}
+
+.form-container{
+  width: 100%;
+  margin: 0 auto;
+  
+}

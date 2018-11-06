@@ -16,13 +16,12 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(cors());
 
-
-
 const port = process.env.PORT || 8989;
 app.listen(port, () => console.log(`Server running on port:${port}`));
  
+app.get('/', (req, res) => res.render('./index.ejs'));
 // app.get('/', loadUser);
-app.get('/', loadMagnets);
+// app.get('/', loadMagnets);
 app.get('/login',login);
 app.get('/sign-up',sign_up);
 
