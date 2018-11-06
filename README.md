@@ -29,7 +29,10 @@
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource.
+01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource.-->
 
 ## Credits and Collaborations
-Give credit (and a link) to other people or resources that helped you build this application. -->
+Thank you to Team StarFish Fragrant the Album for creating the foundation for this application:
+* **Caity Heath** - [CaityHeath](https://github.com/CaityHeath)
+* **Kevin Rosales** - [Kevinrosales](https://github.com/Kevinrosales)
+* **Raymond Ruazol** - [rpruazol](https://github.com/rpruazol)
