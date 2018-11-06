@@ -22,11 +22,18 @@ app.listen(port, () => console.log(`Server running on port:${port}`));
 app.get('/', (req, res) => res.render('./index.ejs'));
 // app.get('/', loadUser);
 // app.get('/', loadMagnets);
-// app.get('/login',login);
-// app.get('/sign-up',sign_up);
+app.get('/login',(req, res)=>{
+  res.render('/pages/login.ejs')
+});
+app.post('/login', loginUser);
+app.get('/register',(req, res)=>{
+  res.render('/pages/registration.ejs')
+});
+app.post('/register', registerUser);
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
-app.get('/test', renderTest);
-app.post('/test', registerUser)
+// app.get('/test', renderTest);
+// app.post('/test', registerUser)
+// app.post('/test', loginUser)
 
 // app.post('/meme', fetchMemeAPI)
 //This retrieves and returns data from Meme API
@@ -131,15 +138,28 @@ function registerUser(req, res){
 }
 
 function loginUser(req, res){
-
-  res.render('pages/login');
+  console.log(req.body);
+  let SQL = `SELECT username FROM users WHERE email=$1`;
+  let values = Object.values(req.body);
+  client.query(SQL, values)
+    .then(results =>{
+      if(results.rowCount){
+        /////will login to the fridge page
+        res.redirect('/');
+        // SQL = `SELECT * FROM magnets`
+      }
+      else{
+        res.status(500).send('email is not registerd.  Go to registration page or check spelling')
+      }
+    })
+  // res.render('pages/login');
 }
 
 //=====-----++++++ Render Test
 function renderTest(req, res){
 
   // loadMagnets();
-  res.render('pages/registration.ejs');
+  res.render('pages/login.ejs');
 
 }
 
