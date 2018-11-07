@@ -31,11 +31,18 @@ app.get('/register',(req, res)=>{
 });
 app.post('/register', registerUser);
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
-// app.get('/test', renderTest);
+app.get('/test', renderTest);
 // app.post('/test', registerUser)
 // app.post('/test', loginUser)
 
 // app.post('/meme', fetchMemeAPI)
+
+//This gets all API related data
+function fetchAll(req, res){
+  fetchMemeAPI(req, res);
+  fetchWordAPI(req, res);
+}
+
 //This retrieves and returns data from Meme API
 function fetchMemeAPI(req, res) {
   const meme_URL = `https://api.imgflip.com/get_memes`;
@@ -47,6 +54,7 @@ function fetchMemeAPI(req, res) {
           let mag = new Magnet(result.url, 6, 7, 2);
           mag.save();
         });
+        client.query(`UPDATE magnet_types SET created_at = ${Date.now()} WHERE id=2`)
         // return res.render('pages/searches/show', { memes: formattedResults});
       } else {
         throw 'no results returned...sorry';
@@ -56,7 +64,7 @@ function fetchMemeAPI(req, res) {
 }
 
 function fetchWordAPI(req, res) {
-  const word_URL = `https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb%2C%20adverb&minCorpusCount=10000&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=3&maxLength=8&limit=30&api_key=${process.env.WORD_API_KEY}`;
+  const word_URL = `https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb%2C%20adverb&minCorpusCount=10000&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=3&maxLength=8&limit=30&api_key=${process.env.WORDS_API_KEY}`;
 
   return superagent.get(word_URL)
     .then(results => {
@@ -72,6 +80,28 @@ function fetchWordAPI(req, res) {
     .catch(err => handleError(err, res));
 }
 
+function checkMagnets(req, res){
+  client.query(`SELECT created_at FROM magnet_types WHERE id=2`)
+    .then(time=>{
+      if(!time.rowCount){
+        fetchAll(req, res);
+        loadMagnets(req, res);
+      }
+      // console.log(time.rows[0]);
+      // console.log(minutes);
+      else if((Date.now() - time.rows[0].created_at)/(1000*60*60*24) > 7){
+        client.query(`DELETE FROM magnets WHERE type_id>1`)
+          .then(()=>{
+            fetchAll(req, res);
+            loadMagnets(req, res);
+          })
+      }
+      else{
+        loadMagnets(req, res);
+      }
+    })
+}
+
 function loadMagnets(req, res) {
   // const magArray = [];
   // let types = 0;
@@ -85,7 +115,7 @@ function loadMagnets(req, res) {
       result.rows.forEach(element =>{
         magnets[element.type].push(element)
       })
-      console.log(Object.values(magnets));
+      // console.log(Object.values(magnets));
       // res.render('/ejsSomething', magnets);
       //TODO: CARLOS make sure you uncomment above and put an ACTUAL link to pages/
 
@@ -158,7 +188,8 @@ function loginUser(req, res){
 //=====-----++++++ Render Test
 function renderTest(req, res){
 
-  // loadMagnets();
+  // fetchMemeAPI();
+  checkMagnets();
   res.render('pages/login.ejs');
 
 }
