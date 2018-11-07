@@ -62,6 +62,7 @@ function fetchMemeAPI(req, res) {
           let mag = new Magnet(result.url, 6, 7, 2);
           mag.save();
         });
+        client.query(`UPDATE magnet_types SET created_at=${Date.now()} WHERE id=2;`);
       } else {
         throw 'no results returned...sorry';
       }
@@ -89,13 +90,13 @@ function fetchWordAPI(req, res) {
 function checkMagnets(req, res){
   client.query(`SELECT created_at FROM magnet_types WHERE id=2`)
     .then(time=>{
-      if(!time.rowCount){
+      if(!time.rows[0].created_at){
+        console.log('getting new data');
         fetchAll(req, res);
         loadMagnets(req, res);
       }
-      // console.log(time.rows[0]);
-      // console.log(minutes);
       else if((Date.now() - time.rows[0].created_at)/(1000*60*60*24) > 7){
+        console.log('data too old');
         client.query(`DELETE FROM magnets WHERE type_id>1`)
           .then(()=>{
             fetchAll(req, res);
@@ -114,6 +115,7 @@ function loadMagnets(req, res) {
     meme: [],
     word: []
   }
+
   client.query(`SELECT content, x, y, type FROM magnets JOIN magnet_types ON magnets.type_id=magnet_types.id`)
     .then( result =>{
       result.rows.forEach(element =>{
