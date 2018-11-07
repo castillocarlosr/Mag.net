@@ -43,7 +43,7 @@ app.post('/register', registerUser);
 app.get('/fridge', checkMagnets);
 
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
-// app.get('/test', renderTest);
+app.get('/test', renderTest);
 // app.post('/test', registerUser)
 
 //This retrieves all API related data
@@ -179,8 +179,8 @@ function loginUser(req, res){
 function renderTest(req, res){
 
   // fetchMemeAPI();
-  checkMagnets();
-  res.render('pages/login.ejs');
+  fetchWordAPI();
+  res.redirect('/fridge');
 
 }
 

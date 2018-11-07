@@ -2,16 +2,28 @@
 <html>
         <%- include('../../partials/head') %>
 <body>
-        <%- include('../../partials/header') ; %>
+        <%- include('../../partials/header') %>
  <main>
+         <p><%= data[0][0].content %></p>
+         
+         <% for(let i = 0; i < data.length; i++) { %>
+                <% for(let j = 0; j < data[i].length; j++) { %>
+                        <% if (i === 0) { %>
+                                <p class="letterMag"><%= data[i][j].content %></p>
+                        <% } else if (i === 1) { %>
+                                <img class="memeMag" src=<%= data[i][j].content %> alt="" height="100" width="100">
+                        <% } else { %>
+                                <p class="wordMag" display><%= data[i][j].content %></p>
+
+                        <% } %>
+                <% } %>
+        <% } %>
      <figure>
             <img id="fridgeImg" src =  "img/fridges.png ">
-
      </figure>
 
-     <p><%= data %></p>
  </main>
-        <%- include('../../partials/footer'); %>
+        <%- include('../../partials/footer') %>
 
 </body>
 
