@@ -1,12 +1,19 @@
 <header>
         <nav>
-            <section>
+            <section class="brand">
                 <a href="<%= '/' %>">Mag.Net</a>
-
             </section>
             <section>
-                <a href="#">Login</a>
-                <a href="#">Register</a>
+                  <% for(let link of links){%> 
+                    <% if(url === '/'){%>
+                        <a href="#"><%= link ==='login'? '':'welcome John' %></a>
+                    <% } else if(url === '/login'){ %>
+                        <a href="#"><%= link ==='login'? '':'register' %></a>
+                    <% } else { %>
+                        <a href="#"><%= link ==='register'? '':'login' %></a>
+                   <% } %>
+                   
+                <%} %> 
             </section>
         </nav>
     </header>
