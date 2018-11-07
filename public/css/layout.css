@@ -2,7 +2,7 @@
 *** DESKTOP
 **********************/
 
-@media all and (min-width: 992px) {
+@media all and (min-width: 768px) {
 
   /*********************
   *** GENERAL
@@ -19,150 +19,6 @@
   /*********************
   *** FOOTER LAYOUTS
   **********************/
-}
-
-
-
-/*********************
-*** TABLET
-**********************/
-
-/* @media all and (min-width: 768px) and (max-width: 991px) { */
-
-  /*********************
-  *** GENERAL
-  **********************/
-
-  /* body {
-    display: grid;
-    grid-column-gap: 1vh; 
-    grid-row-gap: 1vh;
-    grid-template-columns: 1fr 1fr auto 1fr 1fr;
-    grid-template-rows: 1fr auto 1fr;
-  } */
-
-  /*********************
-  *** HEADER LAYOUTS
-  **********************/
-
-  /* header {
-    grid-column: 1 / span 5;
-    grid-row-start: 1;
-  } */
-
-  /* header nav {
-    border: 1px solid black;
-    display: grid;
-    font-size: larger;
-    grid-column: 2 / span col4-start;
-    grid-template-columns: .5fr 2.5fr 2.5fr .5fr;
-    padding: 2vh;
-  } */
-
-  /* header nav section:first-of-type {
-    align-self: center;
-    grid-column: 2 / span 1;
-    justify-self: start;
-  } */
-
-  /* header nav section:last-of-type {
-    align-self: center;
-    grid-column: 3 / span 1;
-    justify-self: end;
-  } */
-
-
-  /*********************
-  *** MAIN LAYOUTS
-  **********************/
-  /* main {
-    grid-row-start: 2;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: 3;
-  } */
-
-  /* main section:first-child {
-    border: 1px solid black;
-    display: grid;
-    grid-column: 1;
-    grid-row: 1 / span 3;
-    grid-template-columns: 5fr 3fr;
-    padding-bottom: 1vh;
-    padding-top: 1vh;
-    position: relative; 
-  } */
-
-  /* main section:first-child h1 {
-    font-size: 5vh;
-    grid-column: 1;
-    left: 0;
-    position: absolute;
-    top: 15vh;
-  } */
-
-  /* main section:first-child button {
-    border: 1px solid yellow;
-    border-radius: 5vh;
-    font-size: 5vh;
-    grid-column: 1;
-    left: 25vw;
-    position: absolute;
-    top: 50vh;
-  } */
-
-  main section:first-child img {
-    grid-column: 1;
-    justify-self: center;
-  }
-
-  /* main section:last-child {
-    border: 1px solid black;
-    align-content: end;
-    display: grid;
-    grid-column: 2;
-    grid-row-gap: 1vh;
-    grid-template-columns: 4fr;
-    justify-items: end;
-  } */
-
-  /* main section:last-child div {
-    border: 1px solid gray;
-    grid-column: 1;
-    margin-bottom: 1vh;
-    margin-top: 1vh;
-    position: relative;
-  } */
-
-  /* main section:last-child div h2 {
-    font-size: 2vh;
-    grid-column: 1;
-    margin-bottom: 1vh;
-    margin-top: 1vh;
-  } */
-
-  /* main section:last-child div img {
-   grid-column: 1;
-   justify-self: center;
-  } */
-
-/* main figure{
-  display: grid;
-  grid-template-columns: .5fr 3fr .5fr;
-  grid-template-rows: 5fr ;
- }
-
-main #fridgeImg{
-  grid-column:2 ;
-  
-} */
-
-  /*********************
-  *** FOOTER LAYOUTS
-  **********************/
-  footer {
-    grid-row-start: 3;
-  }
 }
 
 
@@ -243,6 +99,15 @@ main #fridgeImg{
     left: 0;
     position: absolute;
     top: 15vh;
+  }
+
+  main section:first-child button {
+    background: yellow;
+    border: 1px solid black;
+    border-radius: 5%;
+    left: 65vh;
+    position: absolute;
+    top: 65vh;
   }
 
   main section:first-child img {
