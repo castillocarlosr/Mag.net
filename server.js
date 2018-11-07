@@ -46,8 +46,15 @@ app.get('/fridge', checkMagnets);
 // app.get('/test', renderTest);
 // app.post('/test', registerUser)
 
+function randomCoords(xMin, xMax, yMin, yMax) {
+  let xCoord = Math.floor(Math.random() * (Math.floor(xMax) - Math.floor(xMin) + 1)) + Math.floor(xMin);
+  let yCoord = Math.floor(Math.random() * (Math.floor(yMax) - Math.floor(yMin) + 1)) + Math.floor(yMin);
+  return {x: xCoord, y: yCoord};
+}
+
 //This retrieves all API related data
 function fetchAll(req, res) {
+  createAlphabet(req, res);
   fetchMemeAPI(req, res);
   fetchWordAPI(req, res);
 }
@@ -77,7 +84,8 @@ function fetchWordAPI(req, res) {
     .then(results => {
       if (results.body.length) {
         results.body.forEach(word => {
-          let mag = new Magnet(word.word.toLowerCase(), 10, 12, 3);
+          let coords = randomCoords(10, 40, 20, 35);
+          let mag = new Magnet(word.word.toLowerCase(), coords.x, coords.y, 3);
           mag.save();
         });
       } else {
