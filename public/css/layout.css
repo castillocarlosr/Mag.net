@@ -46,7 +46,6 @@ footer{
 footer p a{
   text-decoration: none;
 }
-}
  main .form-container-login{
   display: grid;
   grid-template-columns: auto;
