@@ -11,12 +11,12 @@
                         <% } else if (i === 1) { %>
                                 <img id="meme<%= data[i][j].id %>" class="memeMag" draggable="true" ondragstart="dragstart_handler(event);" src=<%= data[i][j].content %> alt="" height="100" width="100">
                         <% } else { %>
-                                <p id="word<%= data[i][j].id %>" class="wordMag" draggable="true" ondragstart="dragstart_handler(event);" display><%= data[i][j].content %></p>
+                                <p id="word<%= data[i][j].id %>" class="wordMag" draggable="true" ondragstart="dragstart_handler(event);" style="position: absolute; left: <%= data[i][j].x %>px; top: <%= data[i][j].y %>px" ><%= data[i][j].content %></p>
                         <% } %>
                 <% } %>
         <% } %>
      <figure>
-            <img id="fridgeImg" src =  "img/fridges.png ">
+            <img id="fridgeImg" src="img/fridges.png " ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
 
      </figure>
 
