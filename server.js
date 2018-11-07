@@ -19,15 +19,19 @@ app.use(cors());
 const port = process.env.PORT || 8989;
 app.listen(port, () => console.log(`Server running on port:${port}`));
 
-app.get('/', (req, res) => res.render('./index.ejs'));
+app.get('/', (req, res) => {
+  res.render('./index.ejs', {url: req.url, links: ['login', 'register']});
+  console.log(req.url);
+});
 // app.get('/', loadUser);
 // app.get('/', loadMagnets);
 app.get('/login',(req, res)=>{
-  res.render('./pages/login.ejs')
+  res.render('./pages/login.ejs',{url: req.url,links: ['login', 'register']});
+  
 });
 app.post('/login', loginUser);
 app.get('/register',(req, res)=>{
-  res.render('./pages/registration.ejs')
+  res.render('./pages/registration.ejs',{url: req.url, links: ['login', 'register']});
 });
 app.post('/register', registerUser);
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
