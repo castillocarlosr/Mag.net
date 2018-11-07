@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('working');
-
 function dragstart_handler(event) {
   console.log(event.target.id);
   event.dataTransfer.setData('text/plain', event.target.id);

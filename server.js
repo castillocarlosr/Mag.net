@@ -116,7 +116,7 @@ function loadMagnets(req, res) {
     word: []
   }
 
-  client.query(`SELECT content, x, y, type FROM magnets JOIN magnet_types ON magnets.type_id=magnet_types.id`)
+  client.query(`SELECT magnets.id, content, x, y, type FROM magnets JOIN magnet_types ON magnets.type_id=magnet_types.id`)
     .then( result =>{
       result.rows.forEach(element =>{
         magnets[element.type].push(element)

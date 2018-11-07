@@ -7,7 +7,7 @@
         <% for(let i = 0; i < data.length; i++) { %>
                 <% for(let j = 0; j < data[i].length; j++) { %>
                         <% if (i === 0) { %>
-                                <p id="letter<%= data[i][j].id %>" class="letterMag" draggable="true" ondragstart="dragstart_handler(event);" style="position: absolute; left: <%= data[i][j].x + 20 %>px; top: <%= data[i][j].y + 20 %>px; color: red;"><%= data[i][j].content %></p>
+                                <p id=<%= `letter${data[i][j].id}` %> class="letterMag" draggable="true" ondragstart="dragstart_handler(event);" style="position: absolute; left: <%= data[i][j].x + 20 %>px; top: <%= data[i][j].y + 20 %>px; color: red;"><%= data[i][j].content %></p>
                         <% } else if (i === 1) { %>
                                 <img id="meme<%= data[i][j].id %>" class="memeMag" draggable="true" ondragstart="dragstart_handler(event);" src=<%= data[i][j].content %> alt="" height="100" width="100">
                         <% } else { %>
