@@ -7,11 +7,11 @@
         <% for(let i = 0; i < data.length; i++) { %>
                 <% for(let j = 0; j < data[i].length; j++) { %>
                         <% if (i === 0) { %>
-                                <p class="letterMag" style="position: absolute; left: <%= data[i][j].x + 20 %>px; top: <%= data[i][j].y + 20 %>px; color: red;"><%= data[i][j].content %></p>
+                                <p class="letterMag" draggable="true" style="position: absolute; left: <%= data[i][j].x + 20 %>px; top: <%= data[i][j].y + 20 %>px; color: red;"><%= data[i][j].content %></p>
                         <% } else if (i === 1) { %>
-                                <img class="memeMag" src=<%= data[i][j].content %> alt="" height="100" width="100">
+                                <img class="memeMag" draggable="true" src=<%= data[i][j].content %> alt="" height="100" width="100">
                         <% } else { %>
-                                <p class="wordMag" display><%= data[i][j].content %></p>
+                                <p class="wordMag" draggable="true" display><%= data[i][j].content %></p>
 
                         <% } %>
                 <% } %>
