@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS magnets;
 
 CREATE TABLE IF NOT EXISTS magnet_types (
 id SERIAL PRIMARY KEY,
-type VARCHAR(255)
+type VARCHAR(255),
+created_at BIGINT
 );
 
 CREATE TABLE IF NOT EXISTS users (
