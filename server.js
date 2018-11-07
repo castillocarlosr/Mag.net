@@ -19,22 +19,38 @@ app.use(cors());
 const port = process.env.PORT || 8989;
 app.listen(port, () => console.log(`Server running on port:${port}`));
 
+//-------------HOME ROUTE--------------------------------------------
 app.get('/', (req, res) => {
   res.render('./index.ejs', {url: req.url, links: ['login', 'register']});
   console.log(req.url);
 });
+
+//--------USER LOGIN ROUTES--------------------------------------------
 app.get('/login',(req, res)=>{
   res.render('./pages/login.ejs',{url: req.url,links: ['login', 'register']});
   
 });
 app.post('/login', loginUser);
+
+
+//---------USER REGISTRATION ROUTES------------------------------------------
 app.get('/register',(req, res)=>{
   res.render('./pages/registration.ejs',{url: req.url, links: ['login', 'register']});
 });
 app.post('/register', registerUser);
+
+//---------------------------FRIDGE ROUTES------------------------------------------
+app.get('/fridge', checkMagnets);
+
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
-app.get('/test', renderTest);
+// app.get('/test', renderTest);
 // app.post('/test', registerUser)
+
+//This retrieves all API related data
+function fetchAll(req, res) {
+  fetchMemeAPI(req, res);
+  fetchWordAPI(req, res);
+}
 
 //This retrieves and returns data from Meme API
 function fetchMemeAPI(req, res) {
@@ -103,8 +119,7 @@ function loadMagnets(req, res) {
       result.rows.forEach(element =>{
         magnets[element.type].push(element)
       })
-      // console.log(Object.values(magnets));
-      // res.render('/ejsSomething', magnets);
+      res.render('./pages/community/show.ejs', {data: Object.values(magnets), url: req.url, links: ['login', 'register']});
       //TODO: CARLOS make sure you uncomment above and put an ACTUAL link to pages/
     })
     .catch(err => handleError(err, res));
