@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 //--------USER LOGIN ROUTES--------------------------------------------
 app.get('/login',(req, res)=>{
   res.render('./pages/login.ejs',{url: req.url,links: ['login', 'register']});
-  
+
 });
 app.post('/login', loginUser);
 
@@ -121,15 +121,6 @@ function loadMagnets(req, res) {
       })
       res.render('./pages/community/show.ejs', {data: Object.values(magnets), url: req.url, links: ['login', 'register']});
       //TODO: CARLOS make sure you uncomment above and put an ACTUAL link to pages/
-    })
-    .catch(err => handleError(err, res));
-}
-
-function loadUser(req, res) {
-  client.query('SELECT * FROM users;')
-  return client.query()
-    .then( results => {
-      res.render('./index.ejs', {data: results.rows[0]});
     })
     .catch(err => handleError(err, res));
 }
