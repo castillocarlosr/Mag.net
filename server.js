@@ -19,30 +19,23 @@ app.use(cors());
 const port = process.env.PORT || 8989;
 app.listen(port, () => console.log(`Server running on port:${port}`));
 
-app.get('/', (req, res) => res.render('./index.ejs'));
+app.get('/', (req, res) => {
+  res.render('./index.ejs', {url: req.url, links: ['login', 'register']});
+  console.log(req.url);
+});
 app.get('/login',(req, res)=>{
-  res.render('./pages/login.ejs')
+  res.render('./pages/login.ejs',{url: req.url,links: ['login', 'register']});
+  
 });
 app.post('/login', loginUser);
 app.get('/register',(req, res)=>{
-  res.render('./pages/registration.ejs')
+  res.render('./pages/registration.ejs',{url: req.url, links: ['login', 'register']});
 });
 app.post('/register', registerUser);
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
 app.get('/test', renderTest);
 // app.post('/test', registerUser)
 
-<<<<<<< HEAD
-=======
-// app.post('/meme', fetchMemeAPI)
-
-//This gets all API related data
-function fetchAll(req, res){
-  fetchMemeAPI(req, res);
-  fetchWordAPI(req, res);
-}
-
->>>>>>> da5c4fab510172c7b41f627ae2311150009492e2
 //This retrieves and returns data from Meme API
 function fetchMemeAPI(req, res) {
   const meme_URL = `https://api.imgflip.com/get_memes`;
@@ -53,11 +46,6 @@ function fetchMemeAPI(req, res) {
           let mag = new Magnet(result.url, 6, 7, 2);
           mag.save();
         });
-<<<<<<< HEAD
-=======
-        client.query(`UPDATE magnet_types SET created_at = ${Date.now()} WHERE id=2`)
-        // return res.render('pages/searches/show', { memes: formattedResults});
->>>>>>> da5c4fab510172c7b41f627ae2311150009492e2
       } else {
         throw 'no results returned...sorry';
       }

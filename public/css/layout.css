@@ -1,3 +1,91 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+header{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-evenly;
+  align-content: center;
+  position: fixed;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  background-color: #999;
+  color: white;
+  
+}
+header nav .brand a{
+text-decoration: none;
+}
+header a{
+color: white;
+
+}
+
+footer{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  align-content: center;
+  grid-gap: 70px;
+  position: fixed;
+  bottom: 0;
+  height: 90px;
+  width: 100%;
+  background-color: #999;
+  color: white;
+}
+footer p a{
+  text-decoration: none;
+  
+}
+ main .form-container-login{
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  margin-top: 70px;
+  
+
+  
+}
+main .form-container-login input {
+  margin: 15px;
+}
+main .form-container-login button, main .form-container-register button{
+  background-color: #c2d4dd;
+  color: black;
+  border: none;
+  padding: 7px;
+  box-shadow: 1px 1px black;
+}
+main .form-container-login button{
+  margin-left: 80px;
+}
+main .form-container-register button{
+  margin-left: 90px;
+}
+main .form-container-register{
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  margin-top: 70px;
+  
+}
+main .form-container-register input {
+  margin: 15px;
+}
+
+/* 
+mobile
+ */
+ @media screen and (max-width: 320px){
+   header,footer{
+     height: 50px;
+   }
+   
+ }
+
 /*********************
 *** DESKTOP
 **********************/
@@ -35,6 +123,7 @@
     grid-template-columns: 1fr;
     /* grid-template-rows: .5fr 2fr 1fr 1fr 1fr .5fr; */
   }
+ 
 
 
   /*********************
@@ -144,9 +233,9 @@ main figure{
  }
 
 main #fridgeImg{
-  grid-column:2 ;
-  
+  grid-column:2 ;  
 }
+
   /*********************
   *** FOOTER LAYOUTS
   **********************/
@@ -177,51 +266,3 @@ main #fridgeImg{
   }
 }
 
-.form-container{
-  width: 500px;
-  margin: 0 auto;
-  color: #777;
-}
-form{
-  width: 100%;
-  margin: 60px;
-
-
-}
-form input{
-  margin: 10px;
-}
-/* header,footer{
-  background-color:#034f84;
-}
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 50px;
-  
-  
-} */
-/* header h1 {
-  text-align: center;
-  margin-top: 10px;
-  color: white;
-} */
-/* footer{
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  
-
-}
-footer p {
-padding: 10px;
-text-align: center;
-color: white;
-} */
-
-.form-container{
-  width: 100%;
-  margin: 0 auto;
-  
-}
