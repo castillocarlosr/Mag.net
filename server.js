@@ -19,30 +19,35 @@ app.use(cors());
 const port = process.env.PORT || 8989;
 app.listen(port, () => console.log(`Server running on port:${port}`));
 
+//-------------HOME ROUTE--------------------------------------------
 app.get('/', (req, res) => {
   res.render('./index.ejs', {url: req.url, links: ['login', 'register']});
   console.log(req.url);
 });
-// app.get('/', loadUser);
-// app.get('/', loadMagnets);
+
+//--------USER LOGIN ROUTES--------------------------------------------
 app.get('/login',(req, res)=>{
   res.render('./pages/login.ejs',{url: req.url,links: ['login', 'register']});
-  
+
 });
 app.post('/login', loginUser);
+
+
+//---------USER REGISTRATION ROUTES------------------------------------------
 app.get('/register',(req, res)=>{
   res.render('./pages/registration.ejs',{url: req.url, links: ['login', 'register']});
 });
 app.post('/register', registerUser);
+
+//---------------------------FRIDGE ROUTES------------------------------------------
+app.get('/fridge', checkMagnets);
+
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
-app.get('/test', renderTest);
+// app.get('/test', renderTest);
 // app.post('/test', registerUser)
-// app.post('/test', loginUser)
 
-// app.post('/meme', fetchMemeAPI)
-
-//This gets all API related data
-function fetchAll(req, res){
+//This retrieves all API related data
+function fetchAll(req, res) {
   fetchMemeAPI(req, res);
   fetchWordAPI(req, res);
 }
@@ -52,14 +57,11 @@ function fetchMemeAPI(req, res) {
   const meme_URL = `https://api.imgflip.com/get_memes`;
   return superagent.get(meme_URL)
     .then(results => {
-      // console.log(results.body.data.memes);
       if (results.body.data.memes.length > 0) {
         results.body.data.memes.slice(4, 8).forEach(result => {
           let mag = new Magnet(result.url, 6, 7, 2);
           mag.save();
         });
-        client.query(`UPDATE magnet_types SET created_at = ${Date.now()} WHERE id=2`)
-        // return res.render('pages/searches/show', { memes: formattedResults});
       } else {
         throw 'no results returned...sorry';
       }
@@ -107,8 +109,6 @@ function checkMagnets(req, res){
 }
 
 function loadMagnets(req, res) {
-  // const magArray = [];
-  // let types = 0;
   let magnets = {
     alphabet: [],
     meme: [],
@@ -119,22 +119,8 @@ function loadMagnets(req, res) {
       result.rows.forEach(element =>{
         magnets[element.type].push(element)
       })
-      // console.log(Object.values(magnets));
-      // res.render('/ejsSomething', magnets);
+      res.render('./pages/community/show.ejs', {data: Object.values(magnets), url: req.url, links: ['login', 'register']});
       //TODO: CARLOS make sure you uncomment above and put an ACTUAL link to pages/
-
-      // magArray.push(result.rows);
-      // console.log(magArray);
-    })
-    .catch(err => handleError(err, res));
-  // res.send('Howdy again');
-}
-
-function loadUser(req, res) {
-  client.query('SELECT * FROM users;')
-  return client.query()
-    .then( results => {
-      res.render('./index.ejs', {data: results.rows[0]});
     })
     .catch(err => handleError(err, res));
 }
@@ -154,14 +140,13 @@ Magnet.prototype.save = function() {
 }
 
 function registerUser(req, res){
-  // console.log(Object.values(req.body));
   let SQL = `SELECT * FROM users WHERE username=$1 OR email=$2`;
   let values = Object.values(req.body);
   client.query(SQL, values)
     .then(results =>{
       if(results.rowCount){
-        // alert.show('User name or email already taken.  Try again.  Sorry....')
-        res.status(500).send('User name or email already taken.  Try again.  Sorry....')
+        // TODO: add better alert system
+        res.status(406).send('User name or email already taken.  Try again.  Sorry....')
       }
       else{
         SQL = `INSERT INTO users (username, email) VALUES ($1, $2);`;
@@ -180,10 +165,9 @@ function loginUser(req, res){
       if(results.rowCount){
         /////will login to the fridge page
         res.redirect('/');
-        // SQL = `SELECT * FROM magnets`
       }
       else{
-        res.status(500).send('email is not registerd.  Go to registration page or check spelling')
+        res.status(406).send('email is not registerd.  Go to registration page or check spelling')
       }
     })
   // res.render('pages/login');
