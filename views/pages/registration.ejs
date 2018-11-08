@@ -11,7 +11,8 @@
             <%- include('../partials/header') ; %>
           <main>
         <div class="form-container-register">
-                <form action="/register" method="POST">
+                <!-- <form action="/register" method="POST"> -->
+                <form id="register">
                     <h2>register</h2>
                     <hr>
                     <label for="username">username
@@ -23,11 +24,16 @@
                     <input type="text" name="Email">
                         </label>
                         <br>
-                        <button>Register</button>
+                        <button type="submit">Register</button>
                 </form>   
         </div>
                  
         </main>
           <%- include('../partials/footer'); %>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"> </script>
+        <script src="./js/app.js"></script>
       </body>
       </html>
