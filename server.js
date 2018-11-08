@@ -39,7 +39,7 @@ app.get('/register',(req, res)=>{
 app.post('/register', registerUser);
 
 //---------------------------FRIDGE ROUTES------------------------------------------
-app.get('/fridge', checkMagnets);
+app.get('/fridge/:user', validateRequest);
 app.post('/fridge', updateMagnet);
 app.get('/update', getPositions);
 
@@ -100,6 +100,16 @@ function fetchWordAPI(req, res) {
       loadMagnets(req, res);
     })
     .catch(err => handleError(err, res));
+}
+
+function validateRequest(req, res) {
+  const SQL = `SELECT * FROM users WHERE user=$1;`;
+  const value = [req.params.user];
+  client.query(SQL, value)
+    .then(result => {
+      if (result.rowCount) checkMagnets(req, res);
+      else res.send('Please Sign in to view this page')
+    })
 }
 
 //checks the database to see if memes and words are older than 1 week, if they are then the server will remove them from the DB and create new magnets
