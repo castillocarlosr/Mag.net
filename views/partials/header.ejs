@@ -6,7 +6,7 @@
             <section>
                   <% for(let link of links){%> 
                     <% if(url === '/'){%>
-                        <a href="#"><%= link ==='login'? '':'welcome John' %></a>
+                       <div> <a href="#"><%= link ==='login'? '':'login  / register' %></a></div> 
                     <% } else if(url === '/login'){ %>
                         <a href="#"><%= link ==='login'? '':'register' %></a>
                     <% } else { %>

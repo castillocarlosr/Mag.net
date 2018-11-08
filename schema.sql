@@ -21,9 +21,4 @@ type_id INTEGER NOT NULL REFERENCES magnet_types(id)
 );
 
 
-INSERT INTO magnets (content, x, y, type_id) VALUES ('a', 150, 100, 1);
-INSERT INTO magnets (content, x, y, type_id) VALUES ('b', 140, 100, 1);
-INSERT INTO magnets (content, x, y, type_id) VALUES ('c', 160, 100, 1);
-INSERT INTO magnets (content, x, y, type_id) VALUES ('https://i.imgflip.com/1ur9b0.jpg', 130, 100, 2);
-INSERT INTO magnets (content, x, y, type_id) VALUES ('cow', 160, 100, 3);
 
