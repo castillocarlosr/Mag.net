@@ -164,13 +164,11 @@ Magnet.prototype.save = function() {
 }
 
 function registerUser(req, res){
-  console.log(req.body);
   let SQL = `SELECT * FROM users WHERE username=$1 OR email=$2`;
   let values = Object.values(req.body);
   client.query(SQL, values)
     .then(results =>{
       if(results.rowCount){
-        // TODO: add better alert system
         res.send('1')
       }
       else{
@@ -182,20 +180,18 @@ function registerUser(req, res){
 }
 
 function loginUser(req, res){
-  console.log(req.body);
   let SQL = `SELECT username FROM users WHERE email=$1`;
   let values = Object.values(req.body);
   client.query(SQL, values)
     .then(results =>{
       if(results.rowCount){
         /////will login to the fridge page
-        res.redirect('/fridge');
+        res.send('0');
       }
       else{
-        res.status(406).send('email is not registerd.  Go to registration page or check spelling')
+        res.send('1')
       }
     })
-  // res.render('pages/login');
 }
 
 //=====-----++++++ Render Test
