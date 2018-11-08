@@ -5,7 +5,7 @@ $( function() {
   $(".letterMag").draggable({
     drag: function(event, ui) {
       console.log(`EVENT: ${event.target.id} || UI ${ui.position.left}`);
-
+      // event.target.style: 
 
     }
   });
