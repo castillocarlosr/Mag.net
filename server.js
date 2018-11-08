@@ -22,7 +22,6 @@ app.listen(port, () => console.log(`Server running on port:${port}`));
 //-------------HOME ROUTE--------------------------------------------
 app.get('/', (req, res) => {
   res.render('./index.ejs', {url: req.url, links: ['login', 'register']});
-  console.log(req.url);
 });
 
 //--------USER LOGIN ROUTES--------------------------------------------
@@ -43,24 +42,15 @@ app.post('/register', registerUser);
 app.get('/fridge', checkMagnets);
 app.post('/fridge', updateMagnet);
 app.get('/update', getPositions);
-//+++++____--------+++++++====---change what to render in renderTest function to test pages
-app.get('/test', renderTest);
-// app.post('/test', registerUser)
 
+//generate random x and y coordinates within the provided mins and maxes
 function randomCoords(xMin, xMax, yMin, yMax) {
   let xCoord = Math.floor(Math.random() * (Math.floor(xMax) - Math.floor(xMin) + 1)) + Math.floor(xMin);
   let yCoord = Math.floor(Math.random() * (Math.floor(yMax) - Math.floor(yMin) + 1)) + Math.floor(yMin);
   return {x: xCoord, y: yCoord};
 }
 
-//This retrieves all API related data
-// function resetMagnets(req, res) {
-//   resetAlphabet();
-//   fetchMemeAPI(req, res);
-//   fetchWordAPI(req, res);
-//   loadMagnets(req, res);
-// }
-
+//Resets coordinates for all alphabetical magnets in the database whenever all the other magnets are re-created
 function resetAlphabet(req, res) {
   client.query(`SELECT * FROM magnets WHERE type_id=1`)
     .then(result => {
@@ -92,6 +82,7 @@ function fetchMemeAPI(req, res) {
     .catch(err => handleError(err, res));
 }
 
+//retrieves 30 random words that are a mix of noun, adjectives, verbs, adverbs
 function fetchWordAPI(req, res) {
   const word_URL = `https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb%2C%20adverb&minCorpusCount=10000&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=3&maxLength=8&limit=30&api_key=${process.env.WORDS_API_KEY}`;
 
@@ -111,6 +102,7 @@ function fetchWordAPI(req, res) {
     .catch(err => handleError(err, res));
 }
 
+//checks the database to see if memes and words are older than 1 week, if they are then the server will remove them from the DB and create new magnets
 function checkMagnets(req, res){
   client.query(`SELECT created_at FROM magnet_types WHERE id=2`)
     .then(time=>{
@@ -131,6 +123,7 @@ function checkMagnets(req, res){
     })
 }
 
+//retrieves all magnets and sorts them into arrays within an object based on what type of magnet they are to then send out for rendering
 function loadMagnets(req, res) {
   let magnets = {
     alphabet: [],
@@ -144,11 +137,11 @@ function loadMagnets(req, res) {
         magnets[element.type].push(element)
       })
       res.render('./pages/community/show.ejs', {data: Object.values(magnets), url: req.url, links: ['login', 'register']});
-      //TODO: CARLOS make sure you uncomment above and put an ACTUAL link to pages/
     })
     .catch(err => handleError(err, res));
 }
 
+//Magnet constructor
 function Magnet(content, x, y, type_id){
   this.content = content;
   this.x = x;
@@ -156,21 +149,7 @@ function Magnet(content, x, y, type_id){
   this.type_id = type_id;
 }
 
-function updateMagnet(req, res) {
-  console.log(req.body);
-  const SQL = `UPDATE magnets SET x=$2, y=$3 WHERE id=$1`
-  const values = Object.values(req.body);
-  client.query(SQL, values)
-    .then(() =>{
-      loadMagnets(req, res);
-    })
-}
-
-function getPositions(req, res) {
-  client.query('SELECT id, x, y FROM magnets;')
-    .then(result => res.send(result.rows))
-}
-
+//protpye to be called on each magnet after creation so that it can be saved into the database
 Magnet.prototype.save = function() {
   const SQL = `INSERT INTO magnets(content, x, y, type_id) VALUES ($1, $2, $3, $4);`;
   const values = Object.values(this);
@@ -178,6 +157,20 @@ Magnet.prototype.save = function() {
   client.query(SQL, values);
 }
 
+//Called whenever a POST to /fridge is made so that a magnets coordinates can be saved
+function updateMagnet(req, res) {
+  const SQL = `UPDATE magnets SET x=$2, y=$3 WHERE id=$1`
+  const values = Object.values(req.body);
+  client.query(SQL, values)
+}
+
+//Used for the GET request on the /update route so the magnets positsions will automatically refresh for anyone on the site
+function getPositions(req, res) {
+  client.query('SELECT id, x, y FROM magnets;')
+    .then(result => res.send(result.rows))
+}
+
+//On submit of a  registration form, the POST route will call this and send a response based on if the username or email is available or not
 function registerUser(req, res){
   let SQL = `SELECT * FROM users WHERE username=$1 OR email=$2`;
   let values = Object.values(req.body);
@@ -194,27 +187,19 @@ function registerUser(req, res){
     })
 }
 
+//On submit of the login form, the POST route will use this to check if that is a registered email and send a response back
 function loginUser(req, res){
   let SQL = `SELECT username FROM users WHERE email=$1`;
   let values = Object.values(req.body);
   client.query(SQL, values)
     .then(results =>{
       if(results.rowCount){
-        /////will login to the fridge page
         res.send('0');
       }
       else{
         res.send('1')
       }
     })
-}
-
-//=====-----++++++ Render Test
-function renderTest(req, res){
-
-  getPositions(req, res);
-  res.redirect('/fridge');
-
 }
 
 // For errrors
