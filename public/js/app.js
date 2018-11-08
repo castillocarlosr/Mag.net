@@ -4,6 +4,7 @@
 function savePosition(id, x, y) {
   console.log('In savePosition');
   console.log(`ID: ${id} || X: ${x} || Y: ${y}`);
+  $.ajax
 }
 
 // MAGNET DRAGGING LISTENERS AND HANDLERS
@@ -17,7 +18,8 @@ $( function() {
       console.log('In stop');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
-    }
+    },
+    revert: 'invalid'
   });
 
   $(".memeMag").draggable({
@@ -29,7 +31,8 @@ $( function() {
       console.log('In stop');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
-    }
+    },
+    revert: 'invalid'
   });
 
   $(".wordMag").draggable({
@@ -41,6 +44,13 @@ $( function() {
       console.log('In stop');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
-    }
+    },
+    revert: 'invalid'
+  });
+
+  $("#fridgeImg"),droppable ({
+    accept: ".letterMag" || ".memeMag" || ".wordMag",
+
   });
 });
+
