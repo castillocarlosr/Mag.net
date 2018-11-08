@@ -48,9 +48,14 @@ $( function() {
     revert: 'invalid'
   });
 
-  $("#fridgeImg"),droppable ({
-    accept: ".letterMag" || ".memeMag" || ".wordMag",
-
+  $("#fridgeImg").droppable ({
+    accept: ".letterMag",
+    over: function() {
+      console.log('In Droppable');
+      $(this).animate({ 'border-width' : '1vw', 'border-color' : 'red' }, 500);
+      $(".letterMag").draggable('option', 'containment', $(this));
+    }
   });
+  
 });
 
