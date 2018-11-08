@@ -66,9 +66,7 @@ $( function() {
     cursor: 'move',
     revert: 'invalid',
     stop: function (event, ui) {
-      $('#fridgeImg').on('drop',function(event, ui) {
-        savePosition(event.target.id, ui.position.left, ui.position.top);
-      });
+      savePosition(event.target.id, ui.position.left, ui.position.top);
     }
   });
 
@@ -76,9 +74,7 @@ $( function() {
     cursor: 'move',
     revert: 'invalid',
     stop: function (event, ui) {
-      $('#fridgeImg').on('drop', function(event, ui) {
-        savePosition(event.target.id, ui.position.left, ui.position.top);
-      });
+      savePosition(event.target.id, ui.position.left, ui.position.top);
     }
   });
 
@@ -86,14 +82,13 @@ $( function() {
     cursor: 'move',
     revert: 'invalid',
     stop: function (event, ui) {
-      $('#fridgeImg').on('drop',function(event, ui) {
-        savePosition(event.target.id, ui.position.left, ui.position.top);
-      });
+      savePosition(event.target.id, ui.position.left, ui.position.top);
     }
   });
 
   $('#fridgeImg').droppable ({
     accept: '*',
+
     drop: function(event, ui) {
       savePosition(event.target.id, ui.position.left, ui.position.top);
     }
