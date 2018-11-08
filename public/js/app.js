@@ -111,9 +111,9 @@ $( function() {
   });
 
   $("#fridgeImg").droppable ({
-    over: function() {
-      $(this).effect('shake');
-    },
+    // over: function() {
+    //   $(this).effect('shake');
+    // },
     accept: '*'
   });
   
