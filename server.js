@@ -167,8 +167,8 @@ function updateMagnet(req, res) {
 }
 
 function getPositions(req, res) {
-  client.query('SELECT * FROM magnets;')
-    .then(result => console.log(result.rows))
+  client.query('SELECT id, x, y FROM magnets;')
+    .then(result => res.send(result.rows))
 }
 
 Magnet.prototype.save = function() {
