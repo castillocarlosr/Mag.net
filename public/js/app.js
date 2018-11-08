@@ -52,9 +52,6 @@ document.body.addEventListener('click', function(){
 
 // SAVE X/Y COORDS TO DB BASED ON ID
 let savePosition = (id, x, y) => {
-  console.log('In savePosition');
-  console.log(`ID: ${id} || X: ${x} || Y: ${y}`);
-
   $.ajax({
     method: 'POST',
     url: '/fridge',
@@ -75,7 +72,6 @@ $( function() {
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
     },
-    // containment: $('#fridgeImg'),
     cursor: 'move',
     revert: 'invalid'
   });
@@ -90,7 +86,6 @@ $( function() {
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
     },
-    // containment: $('#fridgeImg'),
     cursor: 'move',
     revert: 'invalid'
   });
@@ -100,7 +95,6 @@ $( function() {
       console.log('In draggable');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
     },
-    // containment: $('#fridgeImg'),
     cursor: 'move',
     revert: 'invalid',
     stop: function(event, ui) {
@@ -111,12 +105,7 @@ $( function() {
   });
 
   $('#fridgeImg').droppable ({
-    accept: '*',
-    drop: function(event, ui) {
-      (event.target.id).draggable('option', )
-    }
+    accept: '*'
   });
-
-  // $('body').droppable();
 });
 
