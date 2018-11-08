@@ -2,7 +2,7 @@ body{
   margin: 0;
   padding: 0;
 }
-@media all and (max-width: 767px){
+/* @media all and (max-width: 767px){ */
 header{
   display: grid;
   grid-template-columns: auto auto auto;
@@ -15,8 +15,18 @@ header{
   color: white;
   
 }
+header nav .brand{
+  position: relative;
+  top: 2%;
+  left: -60px;  
+}
 header nav .brand a{
 text-decoration: none;
+}
+header nav .links{
+  position: relative;
+  left:50%;
+  top: 5%;
 }
 header a{
 color: white;
@@ -27,12 +37,66 @@ nav section a{
   justify-content: center;
   
 }
+
+.toggle-btn{
+
+  width: 50px;
+  height: 40px;
+  background-color:black;
+  /* margin-right: -15px; */
+}
+.toggle-btn span{
+  display: block;
+  width: 85%;
+  height: 7px;
+  background-color: white;
+  margin: 4px;
+}
+#sidebar {
+  position: fixed; 
+  width:200px;
+  height: 100%;
+  right: -200px;
+  background-color: rgba(0,0,230,0.3);
+  z-index: 1;
+}
+#sidebar.active{
+  right: 0;
+}
+#sidebar .toggle-btn{
+  position: absolute;
+  right: 220px;
+  top: 20px;
+}
+#sidebar ul li{
+  list-style: none;
+  padding: 15px 10px;
+}
+#sidebar ul li:hover{
+  background-color: #111;
+}
+.remove{
+  display: none;
+}
+.bar1, .bar2, .bar3 {
+  display: grid;
+  width: 40px;
+  height: 5px;
+  background-color: #4040a1;
+  margin: 2px 0;
+  transition: 0.8s;
+  padding-bottom: 10px;
+  grid-column-start: 3;
+  margin-left: 300px;
+  margin-top: 10px;  
+}
 section div a{
   padding-bottom: 10px;
 }
 
 footer{
-  display: grid;
+  display: grid; 
+  position: fixed;
   grid-template-columns: auto auto auto;
   justify-content: center;
   align-content: center;
@@ -42,6 +106,7 @@ footer{
   width: 100%;
   background-color: #999;
   color: white;
+  
 }
 footer p a{
   text-decoration: none;
@@ -50,10 +115,7 @@ footer p a{
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
-  margin-top: 70px;
-  
-
-  
+  margin-top: 70px;  
 }
 main .form-container-login input {
   margin: 15px;
@@ -87,11 +149,17 @@ mobile
  */
  @media screen and (max-width: 320px){
    header,footer{
-     height: 50px;
-   }
-   
- }
+     height: 75px;
 
+   }
+ 
+ 
+ }
+@media screen and (min-width: 992px){
+  #sidebar{
+    display: none;
+  }
+}
 /*********************
 *** DESKTOP
 **********************/
@@ -141,7 +209,7 @@ mobile
   }
 
   header nav {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: grid;
     font-size: larger;
     grid-template-columns: .5fr 2.5fr 2.5fr .5fr;
@@ -180,6 +248,7 @@ mobile
   main  {
     grid-row-gap: 1vh;
     grid-row-start: 2;
+    margin-bottom: 95px;
   }
 
   main section:first-child {
@@ -230,6 +299,7 @@ mobile
   main section:last-child div img {
    grid-column: 1 / span 3;
    justify-self: stretch;
+   
   }
 
 main figure{

@@ -1,5 +1,11 @@
 'use strict';
 
+
+document.body.addEventListener('click', function(){
+  document.getElementById('sidebar').classList.toggle('active');
+  document.querySelector('.toggle-btn').classList.toggle('remove');
+})
+
 // SAVE X/Y COORDS TO DB BASED ON ID
 function savePosition(id, x, y) {
   console.log('In savePosition');
