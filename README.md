@@ -1,24 +1,25 @@
 # Mag.net
 
-## Authors:
+## Authors
 
-* Nicholas Crain [NJcrain] (https://github.com/NJcrain)
-* Carlos Castillo [castillocarlosr] (https://github.com/castillocarlosr)
-* Charles Clemens [CClemensJr] (https://github.com/CClemensJr)
-* Hiwot Nega [Manaye] (https://github.com/Manaye)
+* Nicholas Crain [NJcrain](https://github.com/NJcrain)
+* Carlos Castillo [castillocarlosr](https://github.com/castillocarlosr)
+* Charles Clemens [CClemensJr](https://github.com/CClemensJr)
+* Hiwot Nega [Manaye](https://github.com/Manaye)
 
 
 ## Description 
 
     Mag.Net is a fun way to leave messages for your friends.
 
-## Version: 
+## Version
     1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Frameworks and Libraries
     * Node.js
     * jQuery
-    
+    * [jQuery UI](https://api.jqueryui.com/category/interactions/) - Used for draggable and droppable magnet interactions.
+    * [jQuery UI Touch Punch](http://touchpunch.furf.com/) - Used for touch functionality on mobile devices.
 ## Database Schemas
      
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
