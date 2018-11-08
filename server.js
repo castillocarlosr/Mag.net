@@ -41,7 +41,7 @@ app.post('/register', registerUser);
 
 //---------------------------FRIDGE ROUTES------------------------------------------
 app.get('/fridge', checkMagnets);
-
+app.post('/fridge', updateMagnet);
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
 app.get('/test', renderTest);
 // app.post('/test', registerUser)
@@ -116,7 +116,6 @@ function checkMagnets(req, res){
       if(!time.rows[0].created_at){
         console.log('getting new data');
         resetAlphabet(req, res);
-        // loadMagnets(req, res);
       }
       else if((Date.now() - time.rows[0].created_at)/(1000*60*60*24) > 7){
         console.log('data too old');
@@ -154,6 +153,16 @@ function Magnet(content, x, y, type_id){
   this.x = x;
   this.y = y;
   this.type_id = type_id;
+}
+
+function updateMagnet(req, res) {
+  console.log(req.body);
+  const SQL = `UPDATE magnets SET x=$2, y=$3 WHERE id=$1`
+  const values = Object.values(req.body);
+  client.query(SQL, values)
+    .then(() =>{
+      res.send('updated magnet');
+    })
 }
 
 Magnet.prototype.save = function() {

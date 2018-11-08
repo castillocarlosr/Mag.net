@@ -55,13 +55,12 @@ function savePosition(id, x, y) {
   console.log('In savePosition');
   console.log(`ID: ${id} || X: ${x} || Y: ${y}`);
 
-  let magPositionUpdate = $.ajax({
+  $.ajax({
     method: 'POST',
     url: '/fridge',
     data: { magnetID: id, magnetX: x, magnetY: y }
-  });
-
-  magPositionUpdate.done( msg => alert( 'Data Saved: ' + msg));
+  })
+    .done( msg => alert( 'Data Saved: ' + msg));
 }
 
 // MAGNET DRAGGING LISTENERS AND HANDLERS
