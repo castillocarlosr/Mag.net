@@ -64,7 +64,6 @@ let savePosition = (id, x, y) => {
 $( function() {
   $('.letterMag').draggable({
     cursor: 'move',
-    revert: 'invalid',
     stop: function (event, ui) {
       savePosition(event.target.id, ui.position.left, ui.position.top);
     }
@@ -72,7 +71,6 @@ $( function() {
 
   $('.memeMag').draggable({
     cursor: 'move',
-    revert: 'invalid',
     stop: function (event, ui) {
       savePosition(event.target.id, ui.position.left, ui.position.top);
     }
@@ -80,16 +78,7 @@ $( function() {
 
   $('.wordMag').draggable({
     cursor: 'move',
-    revert: 'invalid',
     stop: function (event, ui) {
-      savePosition(event.target.id, ui.position.left, ui.position.top);
-    }
-  });
-
-  $('#fridgeImg').droppable ({
-    accept: '*',
-
-    drop: function(event, ui) {
       savePosition(event.target.id, ui.position.left, ui.position.top);
     }
   });
