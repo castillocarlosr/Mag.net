@@ -18,8 +18,8 @@
 ## Frameworks and Libraries
     * Node.js
     * jQuery
-    * [jQuery UI](https://api.jqueryui.com/category/interactions/) - Used for draggable and droppable magnet interactions.
-    * [jQuery UI Touch Punch](http://touchpunch.furf.com/) - Used for touch functionality on mobile devices.
+    * jQuery UI (https://api.jqueryui.com/category/interactions/) - Used for draggable and droppable magnet interactions.
+    * jQuery UI Touch Punch (http://touchpunch.furf.com/) - Used for touch functionality on mobile devices.
 ## Database Schemas
      
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
