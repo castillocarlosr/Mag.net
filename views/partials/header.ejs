@@ -1,12 +1,24 @@
 <header>
+                <div id="sidebar">
+                    <div class="toggle-btn">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                    </div>
+                        <ul>
+                            <li>home</li>
+                            <li>login</li>
+                            <li>register</li>          
+                        </ul>
+                </div>
         <nav>
             <section class="brand">
                 <a href="<%= '/' %>">Mag.Net</a>
             </section>
-            <section>
+            <section class="links">
                   <% for(let link of links){%> 
                     <% if(url === '/'){%>
-                       <div> <a href="#"><%= link ==='login'? '':'login  / register' %></a></div> 
+                       <div> <a href="#"><%= link %></a></div> 
                     <% } else if(url === '/login'){ %>
                         <a href="#"><%= link ==='login'? '':'register' %></a>
                     <% } else { %>
