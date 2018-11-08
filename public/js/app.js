@@ -75,7 +75,7 @@ $( function() {
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
     },
-    contaiment: $('#fridgeImg'),
+    // containment: $('#fridgeImg'),
     cursor: 'move',
     revert: 'invalid'
   });
@@ -90,7 +90,7 @@ $( function() {
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
     },
-    contaiment: $('#fridgeImg'),
+    // containment: $('#fridgeImg'),
     cursor: 'move',
     revert: 'invalid'
   });
@@ -100,7 +100,7 @@ $( function() {
       console.log('In draggable');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
     },
-    contaiment: $('#fridgeImg'),
+    // containment: $('#fridgeImg'),
     cursor: 'move',
     revert: 'invalid',
     stop: function(event, ui) {
@@ -111,11 +111,12 @@ $( function() {
   });
 
   $('#fridgeImg').droppable ({
-    // over: function() {
-    //   $(this).effect('shake');
-    // },
-    accept: '*'
+    accept: '*',
+    drop: function(event, ui) {
+      (event.target.id).draggable('option', )
+    }
   });
 
+  // $('body').droppable();
 });
 
