@@ -19,6 +19,8 @@ $( function() {
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
     },
+    contaiment: $('#fridgeImg'),
+    cursor: 'move',
     revert: 'invalid'
   });
 
@@ -32,6 +34,8 @@ $( function() {
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
     },
+    contaiment: $('#fridgeImg'),
+    cursor: 'move',
     revert: 'invalid'
   });
 
@@ -45,16 +49,18 @@ $( function() {
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
     },
+    contaiment: $('#fridgeImg'),
+    cursor: 'move',
     revert: 'invalid'
   });
 
   $("#fridgeImg").droppable ({
-    accept: ".letterMag",
-    over: function() {
-      console.log('In Droppable');
-      $(this).animate({ 'border-width' : '1vw', 'border-color' : 'red' }, 500);
-      $(".letterMag").draggable('option', 'containment', $(this));
-    }
+    accept: '*'
+    // over: function() {
+    //   console.log('In Droppable');
+    //   $(this).animate({ 'border-width' : '1vw', 'border-color' : 'red' }, 500);
+    //   $(".letterMag").draggable('option', 'containment', $(this));
+    // }
   });
   
 });
