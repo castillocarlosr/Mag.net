@@ -188,7 +188,7 @@ function loginUser(req, res){
     .then(results =>{
       if(results.rowCount){
         /////will login to the fridge page
-        res.redirect('/');
+        res.redirect('/fridge');
       }
       else{
         res.status(406).send('email is not registerd.  Go to registration page or check spelling')
