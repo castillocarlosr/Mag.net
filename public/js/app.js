@@ -62,42 +62,24 @@ let savePosition = (id, x, y) => {
 // MAGNET DRAGGING LISTENERS AND HANDLERS
 $( function() {
   $('.letterMag').draggable({
-    drag: function(event, ui) {
-    },
-    stop: function(event, ui) {
-      savePosition(event.target.id, ui.position.left, ui.position.top);
-    },
-    contaiment: $('#fridgeImg'),
     cursor: 'move',
-    revert: 'invalid'
-  });
-
-  $('.memeMag').draggable({
-    drag: function(event, ui) {
-    },
-    stop: function(event, ui) {
-      savePosition(event.target.id, ui.position.left, ui.position.top);
-    },
-    contaiment: $('#fridgeImg'),
-    cursor: 'move',
-    revert: 'invalid'
-  });
-
-  $('.wordMag').draggable({
-    drag: function(event, ui) {
-
-    },
-    contaiment: $('#fridgeImg'),
-    cursor: 'move',
-    revert: 'invalid',
-    stop: function(event, ui) {
+    stop: function (event, ui) {
       savePosition(event.target.id, ui.position.left, ui.position.top);
     }
   });
 
-  $('#fridgeImg').droppable ({
-    accept: '*'
+  $('.memeMag').draggable({
+    cursor: 'move',
+    stop: function (event, ui) {
+      savePosition(event.target.id, ui.position.left, ui.position.top);
+    }
   });
 
+  $('.wordMag').draggable({
+    cursor: 'move',
+    stop: function (event, ui) {
+      savePosition(event.target.id, ui.position.left, ui.position.top);
+    }
+  });
 });
 
