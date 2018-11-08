@@ -63,38 +63,40 @@ let savePosition = (id, x, y) => {
 // MAGNET DRAGGING LISTENERS AND HANDLERS
 $( function() {
   $('.letterMag').draggable({
-    drag: function(event, ui) {
-    },
-    stop: function(event, ui) {
-      savePosition(event.target.id, ui.position.left, ui.position.top);
-    },
     cursor: 'move',
-    revert: 'invalid'
+    revert: 'invalid',
+    stop: function (event, ui) {
+      $('#fridgeImg').on('drop',function(event, ui) {
+        savePosition(event.target.id, ui.position.left, ui.position.top);
+      });
+    }
   });
 
   $('.memeMag').draggable({
-    drag: function(event, ui) {
-    },
-    stop: function(event, ui) {
-      savePosition(event.target.id, ui.position.left, ui.position.top);
-    },
     cursor: 'move',
-    revert: 'invalid'
+    revert: 'invalid',
+    stop: function (event, ui) {
+      $('#fridgeImg').on('drop', function(event, ui) {
+        savePosition(event.target.id, ui.position.left, ui.position.top);
+      });
+    }
   });
 
   $('.wordMag').draggable({
-    drag: function(event, ui) {
-
-    },
     cursor: 'move',
     revert: 'invalid',
-    stop: function(event, ui) {
-      savePosition(event.target.id, ui.position.left, ui.position.top);
+    stop: function (event, ui) {
+      $('#fridgeImg').on('drop',function(event, ui) {
+        savePosition(event.target.id, ui.position.left, ui.position.top);
+      });
     }
   });
 
   $('#fridgeImg').droppable ({
-    accept: '*'
+    accept: '*',
+    drop: function(event, ui) {
+      savePosition(event.target.id, ui.position.left, ui.position.top);
+    }
   });
 });
 
