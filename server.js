@@ -42,6 +42,7 @@ app.post('/register', registerUser);
 //---------------------------FRIDGE ROUTES------------------------------------------
 app.get('/fridge', checkMagnets);
 app.post('/fridge', updateMagnet);
+app.get('/update', getPositions);
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
 app.get('/test', renderTest);
 // app.post('/test', registerUser)
@@ -165,6 +166,11 @@ function updateMagnet(req, res) {
     })
 }
 
+function getPositions(req, res) {
+  client.query('SELECT * FROM magnets;')
+    .then(result => console.log(result.rows))
+}
+
 Magnet.prototype.save = function() {
   const SQL = `INSERT INTO magnets(content, x, y, type_id) VALUES ($1, $2, $3, $4);`;
   const values = Object.values(this);
@@ -206,8 +212,7 @@ function loginUser(req, res){
 //=====-----++++++ Render Test
 function renderTest(req, res){
 
-  // fetchMemeAPI();
-  fetchWordAPI();
+  getPositions(req, res);
   res.redirect('/fridge');
 
 }
