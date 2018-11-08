@@ -65,7 +65,7 @@ function resetAlphabet(req, res) {
   client.query(`SELECT * FROM magnets WHERE type_id=1`)
     .then(result => {
       result.rows.forEach(letter => {
-        let coords = randomCoords(10, 40, 20, 35);
+        let coords = randomCoords(5, 95, 12, 25);
         client.query(`UPDATE magnets SET x=${coords.x}, y=${coords.y} WHERE id=${letter.id}`)
       })
       fetchMemeAPI(req, res);
@@ -79,7 +79,7 @@ function fetchMemeAPI(req, res) {
     .then(results => {
       if (results.body.data.memes.length > 0) {
         results.body.data.memes.slice(4, 8).forEach(result => {
-          let coords = randomCoords(10, 40, 20, 35);
+          let coords = randomCoords(5, 95, 12, 25);
           let mag = new Magnet(result.url, coords.x, coords.y, 2);
           mag.save();
         });
@@ -99,7 +99,7 @@ function fetchWordAPI(req, res) {
     .then(results => {
       if (results.body.length) {
         results.body.forEach(word => {
-          let coords = randomCoords(10, 40, 20, 35);
+          let coords = randomCoords(5, 95, 12, 25);
           let mag = new Magnet(word.word.toLowerCase(), coords.x, coords.y, 3);
           mag.save();
         });
