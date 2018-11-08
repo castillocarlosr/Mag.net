@@ -53,10 +53,22 @@ function randomCoords(xMin, xMax, yMin, yMax) {
 }
 
 //This retrieves all API related data
-function fetchAll(req, res) {
-  createAlphabet(req, res);
-  fetchMemeAPI(req, res);
-  fetchWordAPI(req, res);
+// function resetMagnets(req, res) {
+//   resetAlphabet();
+//   fetchMemeAPI(req, res);
+//   fetchWordAPI(req, res);
+//   loadMagnets(req, res);
+// }
+
+function resetAlphabet(req, res) {
+  client.query(`SELECT * FROM magnets WHERE type_id=1`)
+    .then(result => {
+      result.rows.forEach(letter => {
+        let coords = randomCoords(10, 40, 20, 35);
+        client.query(`UPDATE magnets SET x=${coords.x}, y=${coords.y} WHERE id=${letter.id}`)
+      })
+      fetchMemeAPI(req, res);
+    })
 }
 
 //This retrieves and returns data from Meme API
@@ -66,13 +78,15 @@ function fetchMemeAPI(req, res) {
     .then(results => {
       if (results.body.data.memes.length > 0) {
         results.body.data.memes.slice(4, 8).forEach(result => {
-          let mag = new Magnet(result.url, 6, 7, 2);
+          let coords = randomCoords(10, 40, 20, 35);
+          let mag = new Magnet(result.url, coords.x, coords.y, 2);
           mag.save();
         });
         client.query(`UPDATE magnet_types SET created_at=${Date.now()} WHERE id=2;`);
       } else {
         throw 'no results returned...sorry';
       }
+      fetchWordAPI(req, res);
     })
     .catch(err => handleError(err, res));
 }
@@ -91,6 +105,7 @@ function fetchWordAPI(req, res) {
       } else {
         throw 'no word results returned...sorry'
       }
+      loadMagnets(req, res);
     })
     .catch(err => handleError(err, res));
 }
@@ -100,15 +115,14 @@ function checkMagnets(req, res){
     .then(time=>{
       if(!time.rows[0].created_at){
         console.log('getting new data');
-        fetchAll(req, res);
-        loadMagnets(req, res);
+        resetAlphabet(req, res);
+        // loadMagnets(req, res);
       }
       else if((Date.now() - time.rows[0].created_at)/(1000*60*60*24) > 7){
         console.log('data too old');
         client.query(`DELETE FROM magnets WHERE type_id>1`)
           .then(()=>{
-            fetchAll(req, res);
-            loadMagnets(req, res);
+            resetAlphabet(req, res);
           })
       }
       else{
