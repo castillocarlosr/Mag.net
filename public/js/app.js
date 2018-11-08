@@ -60,7 +60,7 @@ let savePosition = (id, x, y) => {
     url: '/fridge',
     data: { magnetID: id, magnetX: x, magnetY: y }
   })
-    .done( msg => alert( 'Data Saved: ' + msg));
+    .done($.get('/fridge'));
 }
 
 // MAGNET DRAGGING LISTENERS AND HANDLERS
