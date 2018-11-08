@@ -51,7 +51,7 @@ document.body.addEventListener('click', function(){
 })
 
 // SAVE X/Y COORDS TO DB BASED ON ID
-function savePosition(id, x, y) {
+let savePosition = (id, x, y) => {
   console.log('In savePosition');
   console.log(`ID: ${id} || X: ${x} || Y: ${y}`);
 
@@ -100,14 +100,14 @@ $( function() {
       console.log('In draggable');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
     },
+    contaiment: $('#fridgeImg'),
+    cursor: 'move',
+    revert: 'invalid',
     stop: function(event, ui) {
       console.log('In stop');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
-    },
-    contaiment: $('#fridgeImg'),
-    cursor: 'move',
-    revert: 'invalid'
+    }
   });
 
   $("#fridgeImg").droppable ({
