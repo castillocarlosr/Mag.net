@@ -12,6 +12,10 @@ $( function() {
     drag: function(event, ui) {
       console.log('In draggable');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
+    },
+    stop: function(event, ui) {
+      console.log('In stop');
+      console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
       savePosition(event.target.id, ui.position.left, ui.position.top);
     }
   });
