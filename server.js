@@ -22,7 +22,6 @@ app.listen(port, () => console.log(`Server running on port:${port}`));
 //-------------HOME ROUTE--------------------------------------------
 app.get('/', (req, res) => {
   res.render('./index.ejs', {url: req.url, links: ['login', 'register']});
-  console.log(req.url);
 });
 
 //--------USER LOGIN ROUTES--------------------------------------------
@@ -45,22 +44,15 @@ app.post('/fridge', updateMagnet);
 app.get('/update', getPositions);
 //+++++____--------+++++++====---change what to render in renderTest function to test pages
 app.get('/test', renderTest);
-// app.post('/test', registerUser)
 
+//generate random x and y coordinates within the provided mins and maxes
 function randomCoords(xMin, xMax, yMin, yMax) {
   let xCoord = Math.floor(Math.random() * (Math.floor(xMax) - Math.floor(xMin) + 1)) + Math.floor(xMin);
   let yCoord = Math.floor(Math.random() * (Math.floor(yMax) - Math.floor(yMin) + 1)) + Math.floor(yMin);
   return {x: xCoord, y: yCoord};
 }
 
-//This retrieves all API related data
-// function resetMagnets(req, res) {
-//   resetAlphabet();
-//   fetchMemeAPI(req, res);
-//   fetchWordAPI(req, res);
-//   loadMagnets(req, res);
-// }
-
+//Resets coordinates for all alphabetical magnets in the database whenever all the other magnets are re-created
 function resetAlphabet(req, res) {
   client.query(`SELECT * FROM magnets WHERE type_id=1`)
     .then(result => {
@@ -89,9 +81,10 @@ function fetchMemeAPI(req, res) {
       }
       fetchWordAPI(req, res);
     })
-    .catch(err => handleError(err, res));
+    .catch(err => handleError(err, res));// app.post('/test', registerUser)
 }
 
+//retrieves 30 random words that are a mix of noun, adjectives, verbs, adverbs
 function fetchWordAPI(req, res) {
   const word_URL = `https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb%2C%20adverb&minCorpusCount=10000&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=3&maxLength=8&limit=30&api_key=${process.env.WORDS_API_KEY}`;
 
@@ -111,6 +104,7 @@ function fetchWordAPI(req, res) {
     .catch(err => handleError(err, res));
 }
 
+//checks the database to see if memes and words are older than 1 week, if they are 
 function checkMagnets(req, res){
   client.query(`SELECT created_at FROM magnet_types WHERE id=2`)
     .then(time=>{
