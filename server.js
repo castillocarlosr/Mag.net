@@ -138,7 +138,7 @@ function loadMagnets(req, res) {
     word: []
   }
 
-  client.query(`SELECT content, x, y, type FROM magnets JOIN magnet_types ON magnets.type_id=magnet_types.id`)
+  client.query(`SELECT magnets.id, content, x, y, type FROM magnets JOIN magnet_types ON magnets.type_id=magnet_types.id`)
     .then( result =>{
       result.rows.forEach(element =>{
         magnets[element.type].push(element)
@@ -169,32 +169,29 @@ function registerUser(req, res){
   client.query(SQL, values)
     .then(results =>{
       if(results.rowCount){
-        // TODO: add better alert system
-        res.status(406).send('User name or email already taken.  Try again.  Sorry....')
+        res.send('1')
       }
       else{
         SQL = `INSERT INTO users (username, email) VALUES ($1, $2);`;
         client.query(SQL, values)
-          .then(() => res.redirect('/'))
+          .then(() => res.send('0'))
       }
     })
 }
 
 function loginUser(req, res){
-  console.log(req.body);
   let SQL = `SELECT username FROM users WHERE email=$1`;
   let values = Object.values(req.body);
   client.query(SQL, values)
     .then(results =>{
       if(results.rowCount){
         /////will login to the fridge page
-        res.redirect('/fridge');
+        res.send('0');
       }
       else{
-        res.status(406).send('email is not registerd.  Go to registration page or check spelling')
+        res.send('1')
       }
     })
-  // res.render('pages/login');
 }
 
 //=====-----++++++ Render Test
