@@ -65,7 +65,7 @@ let savePosition = (id, x, y) => {
 
 // MAGNET DRAGGING LISTENERS AND HANDLERS
 $( function() {
-  $(".letterMag").draggable({
+  $('.letterMag').draggable({
     drag: function(event, ui) {
       console.log('In draggable');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
@@ -80,7 +80,7 @@ $( function() {
     revert: 'invalid'
   });
 
-  $(".memeMag").draggable({
+  $('.memeMag').draggable({
     drag: function(event, ui) {
       console.log('In draggable');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
@@ -95,7 +95,7 @@ $( function() {
     revert: 'invalid'
   });
 
-  $(".wordMag").draggable({
+  $('.wordMag').draggable({
     drag: function(event, ui) {
       console.log('In draggable');
       console.log(`EVENT: ${event.target.id} || UI-X: ${ui.position.left} || UI-Y: ${ui.position.top}`);
@@ -110,12 +110,12 @@ $( function() {
     }
   });
 
-  $("#fridgeImg").droppable ({
+  $('#fridgeImg').droppable ({
     // over: function() {
     //   $(this).effect('shake');
     // },
     accept: '*'
   });
-  
+
 });
 
