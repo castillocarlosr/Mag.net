@@ -79,7 +79,7 @@ function fetchMemeAPI(req, res) {
       }
       fetchWordAPI(req, res);
     })
-    .catch(err => handleError(err, res));// app.post('/test', registerUser)
+    .catch(err => handleError(err, res));
 }
 
 //retrieves 30 random words that are a mix of noun, adjectives, verbs, adverbs
