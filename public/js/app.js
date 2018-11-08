@@ -55,12 +55,10 @@ $( function() {
   });
 
   $("#fridgeImg").droppable ({
+    over: function() {
+      $(this).effect('shake');
+    },
     accept: '*'
-    // over: function() {
-    //   console.log('In Droppable');
-    //   $(this).animate({ 'border-width' : '1vw', 'border-color' : 'red' }, 500);
-    //   $(".letterMag").draggable('option', 'containment', $(this));
-    // }
   });
   
 });
