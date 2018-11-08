@@ -162,7 +162,7 @@ function updateMagnet(req, res) {
   const values = Object.values(req.body);
   client.query(SQL, values)
     .then(() =>{
-      res.send('updated magnet');
+      loadMagnets(req, res);
     })
 }
 
