@@ -1,3 +1,9 @@
 #fridgeImg {
   z-index: -100;
 }
+
+main section:first-child h1 {
+  color: #cc5500;
+  font-size: 7vh;
+  text-shadow: -1px 0 #87bdd8, 0 1px #87bdd8, 1px 0 #87bdd8, 0 -1px #87bdd8;
+}
