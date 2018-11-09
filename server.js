@@ -96,7 +96,7 @@ function fetchWordAPI(req, res) {
       if (results.body.length) {
         results.body.forEach(word => {
           let coords = randomCoords(5, 95, 12, 25);
-          let color = getRandomColor();
+          let color = 'FFFFFF';
           let mag = new Magnet(word.word.toLowerCase(), coords.x, coords.y, color, 3);
           mag.save();
         });
