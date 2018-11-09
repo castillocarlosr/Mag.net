@@ -60,7 +60,7 @@ let savePosition = (id, x, y) => {
   $.ajax({
     method: 'POST',
     url: '/fridge',
-    data: { magnetID: id, magnetX: Math.floor(x / $(window).width() * 100), magnetY: Math.floor(y/ $(window).height() * 100) }
+    data: { magnetID: id, magnetX: x, magnetY: y }
   })
 }
 
