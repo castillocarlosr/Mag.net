@@ -17,6 +17,7 @@ id SERIAL PRIMARY KEY,
 content VARCHAR(255),
 x INTEGER,
 y INTEGER,
+color VARCHAR(255),
 type_id INTEGER NOT NULL REFERENCES magnet_types(id)
 );
 

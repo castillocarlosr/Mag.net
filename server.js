@@ -56,8 +56,11 @@ function resetAlphabet(req, res) {
   client.query(`SELECT * FROM magnets WHERE type_id=1`)
     .then(result => {
       result.rows.forEach(letter => {
-        let coords = randomCoords(5, 95, 12, 25);
-        client.query(`UPDATE magnets SET x=${coords.x}, y=${coords.y} WHERE id=${letter.id}`)
+        let coords = randomCoords(0, 440, 90, 440);
+        let magnetColor = getRandomColor();
+        let SQL = `UPDATE magnets SET x=$1, y=$2, color=$3 WHERE id=$4`;
+        let values = [coords.x, coords.y, magnetColor, letter.id];
+        client.query(SQL, values);
       })
       fetchMemeAPI(req, res);
     })
@@ -70,8 +73,9 @@ function fetchMemeAPI(req, res) {
     .then(results => {
       if (results.body.data.memes.length > 0) {
         results.body.data.memes.slice(4, 8).forEach(result => {
-          let coords = randomCoords(5, 95, 12, 25);
-          let mag = new Magnet(result.url, coords.x, coords.y, 2);
+          let coords = randomCoords(0, 440, 90, 440);
+          let color = getRandomColor();
+          let mag = new Magnet(result.url, coords.x, coords.y, color, 2);
           mag.save();
         });
         client.query(`UPDATE magnet_types SET created_at=${Date.now()} WHERE id=2;`);
@@ -91,8 +95,9 @@ function fetchWordAPI(req, res) {
     .then(results => {
       if (results.body.length) {
         results.body.forEach(word => {
-          let coords = randomCoords(5, 95, 12, 25);
-          let mag = new Magnet(word.word.toLowerCase(), coords.x, coords.y, 3);
+          let coords = randomCoords(0, 440, 90, 440);
+          let color = 'FFFFFF';
+          let mag = new Magnet(word.word.toLowerCase(), coords.x, coords.y, color, 3);
           mag.save();
         });
       } else {
@@ -143,37 +148,36 @@ function loadMagnets(req, res) {
     word: []
   }
 
-  client.query(`SELECT magnets.id, content, x, y, type FROM magnets JOIN magnet_types ON magnets.type_id=magnet_types.id`)
+  client.query(`SELECT magnets.id, content, x, y, color, type FROM magnets JOIN magnet_types ON magnets.type_id=magnet_types.id`)
     .then( result =>{
       result.rows.forEach(element =>{
         magnets[element.type].push(element)
       })
 
-      res.render('./pages/community/show.ejs', {data: Object.values(magnets), url: req.url, links: ['login', 'register'], randomColors: getRandomColors});
+      res.render('./pages/community/show.ejs', {data: Object.values(magnets), url: req.url, links: ['login', 'register']});
 
     })
     .catch(err => handleError(err, res));
 }
-//
-function getRandomColors(){
-  let arr = [];
-  for(let i = 0; i<3; i++){
-    let num = Math.floor(Math.random()*10);
-    arr.push(num);
-  }
-  return parseInt(arr.join(''));
+
+//Generates a random valid html hex color.
+function getRandomColor() {
+  let color = '' + Math.floor(Math.random() * 16777215).toString(16);
+  return color;
 }
+
 //Magnet constructor
-function Magnet(content, x, y, type_id){
+function Magnet(content, x, y, color, type_id){
   this.content = content;
   this.x = x;
   this.y = y;
+  this.color = color;
   this.type_id = type_id;
 }
 
 //protpye to be called on each magnet after creation so that it can be saved into the database
 Magnet.prototype.save = function() {
-  const SQL = `INSERT INTO magnets(content, x, y, type_id) VALUES ($1, $2, $3, $4);`;
+  const SQL = `INSERT INTO magnets(content, x, y, color, type_id) VALUES ($1, $2, $3, $4, $5);`;
   const values = Object.values(this);
 
   client.query(SQL, values);
@@ -188,7 +192,7 @@ function updateMagnet(req, res) {
 
 //Used for the GET request on the /update route so the magnets positsions will automatically refresh for anyone on the site
 function getPositions(req, res) {
-  client.query('SELECT id, x, y FROM magnets;')
+  client.query('SELECT id, x, y, color FROM magnets;')
     .then(result => res.send(result.rows))
 }
 
