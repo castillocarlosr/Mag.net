@@ -6,26 +6,14 @@
                             <span></span>
                     </div>
                         <ul>
-                            <li>home</li>
-                            <li>login</li>
-                            <li>register</li>          
+                            <a href="/"><li>home</li></a>
+                            <a href="/login"><li>login</li></a>
+                            <a href="/register"><li>register</li></a>          
                         </ul>
                 </div>
         <nav>
             <section class="brand">
                 <a href="<%= '/' %>">Mag.Net</a>
-            </section>
-            <section class="links">
-                  <% for(let link of links){%> 
-                    <% if(url === '/'){%>
-                       <div> <a href="#"><%= link %></a></div> 
-                    <% } else if(url === '/login'){ %>
-                        <a href="#"><%= link ==='login'? '':'register' %></a>
-                    <% } else { %>
-                        <a href="#"><%= link ==='register'? '':'login' %></a>
-                   <% } %>
-                   
-                <%} %> 
             </section>
         </nav>
     </header>
