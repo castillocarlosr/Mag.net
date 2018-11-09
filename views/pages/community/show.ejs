@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-        <%- include('../../partials/head') %>
+              <%- include('../../partials/head') ; %>
 <body>
         <%- include('../../partials/header') ; %>
  <main>
         <% for(let i = 0; i < data.length; i++) { %>
                 <% for(let j = 0; j < data[i].length; j++) { %>
                         <% if (i === 0) { %>
-                                <p id="<%= data[i][j].id %>" class="letterMag" style="position: absolute; left: <%= data[i][j].x %>vw; top: <%= data[i][j].y %>vh;"><%= data[i][j].content %></p>
+                                <p id="<%= data[i][j].id %>" class="letterMag" style="position: absolute; left: <%= data[i][j].x %>vw; top: <%= data[i][j].y %>vh;color: #<%= randomColors() %>"><%= data[i][j].content %></p>
                         <% } else if (i === 1) { %>
                                 <img id="<%= data[i][j].id %>" class="memeMag" style="position: absolute; left: <%= data[i][j].x %>vw; top: <%= data[i][j].y %>vh" src="<%= data[i][j].content %>" alt="" height="100" width="100">
                         <% } else { %>
@@ -16,13 +16,13 @@
                 <% } %>
         <% } %>
      <figure>
-            <img id="fridgeImg" src="img/fridges.png ">
+            <img id="fridgeImg" src="/img/fridges.png ">
 
      </figure>
 
  </main>
  <%- include('../../partials/footer'); %>
- <script src="./js/update.js"></script>
+ <script src="/js/update.js"></script>
 </body>
 
 </html>

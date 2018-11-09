@@ -15,11 +15,10 @@ function checkUsers(e) {
     data: {username: e.target.username.value, email: e.target.Email.value}
   })
     .done(response => {
-      console.log(response);
-      if (response === '1') {
+      if (!response.sucess) {
         alert('username or email already taken');
       } else {
-        location.href = '/fridge';
+        location.href = `/fridge/${response.user}`;
       }
     })
 
@@ -35,20 +34,21 @@ function loginUser(e) {
     data: {email: e.target.Email.value}
   })
     .done(response => {
-      console.log(response);
-      if (response === '1') {
+      if (!response.sucess) {
         alert('This email is not registered. Head to the register page to sign up!');
       } else {
-        location.href = '/fridge';
+        location.href = `/fridge/${response.user}`;
       }
     })
 }
 
 
-document.body.addEventListener('click', function(){
-  document.getElementById('sidebar').classList.toggle('active');
-  document.querySelector('.toggle-btn').classList.toggle('remove');
-})
+  document.body.addEventListener('click', function(){
+    document.getElementById('sidebar').classList.toggle('active');
+    document.querySelector('.toggle-btn').classList.toggle('remove');
+  })
+
+
 
 // SAVE X/Y COORDS TO DB BASED ON ID
 let savePosition = (id, x, y) => {
@@ -62,42 +62,24 @@ let savePosition = (id, x, y) => {
 // MAGNET DRAGGING LISTENERS AND HANDLERS
 $( function() {
   $('.letterMag').draggable({
-    drag: function(event, ui) {
-    },
-    stop: function(event, ui) {
-      savePosition(event.target.id, ui.position.left, ui.position.top);
-    },
-    contaiment: $('#fridgeImg'),
     cursor: 'move',
-    revert: 'invalid'
-  });
-
-  $('.memeMag').draggable({
-    drag: function(event, ui) {
-    },
-    stop: function(event, ui) {
-      savePosition(event.target.id, ui.position.left, ui.position.top);
-    },
-    contaiment: $('#fridgeImg'),
-    cursor: 'move',
-    revert: 'invalid'
-  });
-
-  $('.wordMag').draggable({
-    drag: function(event, ui) {
-
-    },
-    contaiment: $('#fridgeImg'),
-    cursor: 'move',
-    revert: 'invalid',
-    stop: function(event, ui) {
+    stop: function (event, ui) {
       savePosition(event.target.id, ui.position.left, ui.position.top);
     }
   });
 
-  $('#fridgeImg').droppable ({
-    accept: '*'
+  $('.memeMag').draggable({
+    cursor: 'move',
+    stop: function (event, ui) {
+      savePosition(event.target.id, ui.position.left, ui.position.top);
+    }
   });
 
+  $('.wordMag').draggable({
+    cursor: 'move',
+    stop: function (event, ui) {
+      savePosition(event.target.id, ui.position.left, ui.position.top);
+    }
+  });
 });
 

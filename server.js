@@ -21,7 +21,7 @@ app.listen(port, () => console.log(`Server running on port:${port}`));
 
 //-------------HOME ROUTE--------------------------------------------
 app.get('/', (req, res) => {
-  res.render('./index.ejs', {url: req.url, links: ['login', 'register']});
+  res.render('index.ejs', {url: req.url, links: ['login', 'register']});
 });
 
 //--------USER LOGIN ROUTES--------------------------------------------
@@ -39,7 +39,8 @@ app.get('/register',(req, res)=>{
 app.post('/register', registerUser);
 
 //---------------------------FRIDGE ROUTES------------------------------------------
-app.get('/fridge', checkMagnets);
+
+app.get('/fridge/:user', validateRequest);
 app.post('/fridge', updateMagnet);
 app.get('/update', getPositions);
 
@@ -102,6 +103,17 @@ function fetchWordAPI(req, res) {
     .catch(err => handleError(err, res));
 }
 
+//checks if the username within the URL is a registered user before loading the fridge page
+function validateRequest(req, res) {
+  const SQL = `SELECT * FROM users WHERE username=$1;`;
+  const value = [req.params.user];
+  client.query(SQL, value)
+    .then(result => {
+      if (result.rowCount) checkMagnets(req, res);
+      else res.send('Please Sign in to view this page')
+    })
+}
+
 //checks the database to see if memes and words are older than 1 week, if they are then the server will remove them from the DB and create new magnets
 function checkMagnets(req, res){
   client.query(`SELECT created_at FROM magnet_types WHERE id=2`)
@@ -136,11 +148,21 @@ function loadMagnets(req, res) {
       result.rows.forEach(element =>{
         magnets[element.type].push(element)
       })
-      res.render('./pages/community/show.ejs', {data: Object.values(magnets), url: req.url, links: ['login', 'register']});
+
+      res.render('./pages/community/show.ejs', {data: Object.values(magnets), url: req.url, links: ['login', 'register'], randomColors: getRandomColors});
+
     })
     .catch(err => handleError(err, res));
 }
-
+//
+function getRandomColors(){
+  let arr = [];
+  for(let i = 0; i<3; i++){
+    let num = Math.floor(Math.random()*10);
+    arr.push(num);
+  }
+  return parseInt(arr.join(''));
+}
 //Magnet constructor
 function Magnet(content, x, y, type_id){
   this.content = content;
@@ -177,12 +199,12 @@ function registerUser(req, res){
   client.query(SQL, values)
     .then(results =>{
       if(results.rowCount){
-        res.send('1')
+        res.send({sucess: false});
       }
       else{
         SQL = `INSERT INTO users (username, email) VALUES ($1, $2);`;
         client.query(SQL, values)
-          .then(() => res.send('0'))
+          .then(() => res.send({sucess: true, user: req.body.username}));
       }
     })
 }
@@ -194,10 +216,10 @@ function loginUser(req, res){
   client.query(SQL, values)
     .then(results =>{
       if(results.rowCount){
-        res.send('0');
+        res.send({sucess:true, user: results.rows[0].username});
       }
       else{
-        res.send('1')
+        res.send({sucess: false})
       }
     })
 }
