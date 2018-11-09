@@ -12,8 +12,9 @@ header{
   top: 0;
   height: 80px;
   width: 100%;
-  background-color: #87bdd8;
+  background-color: #b7d7e8;
   color: white;
+  font-family :sofia;
   
 }
 .letterMag{
@@ -43,8 +44,17 @@ header{
 header nav .brand{
   position: relative;
   top: 2%;
-  left: -125px;  
+  left: -175px; 
+  background-color: white;
+  border: 5px solid #4040a1;
+  padding: 9px; 
+  border-radius: 70px;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 40px; 
+  font-family :sofia;
 }
+
 header nav .brand a{
 text-decoration: none;
 }
@@ -129,7 +139,7 @@ footer{
   bottom: 0;
   height: 90px;
   width: 100%;
-  background-color:  #87bdd8;
+  background-color:  #b7d7e8;
   color: white;
   
 }
