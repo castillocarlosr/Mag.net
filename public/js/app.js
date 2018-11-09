@@ -15,11 +15,10 @@ function checkUsers(e) {
     data: {username: e.target.username.value, email: e.target.Email.value}
   })
     .done(response => {
-      console.log(response);
-      if (response === '1') {
+      if (!response.sucess) {
         alert('username or email already taken');
       } else {
-        location.href = '/fridge';
+        location.href = `/fridge/${response.user}`;
       }
     })
 
@@ -35,11 +34,10 @@ function loginUser(e) {
     data: {email: e.target.Email.value}
   })
     .done(response => {
-      console.log(response);
-      if (response === '1') {
+      if (!response.sucess) {
         alert('This email is not registered. Head to the register page to sign up!');
       } else {
-        location.href = '/fridge';
+        location.href = `/fridge/${response.user}`;
       }
     })
 }

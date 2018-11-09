@@ -102,8 +102,9 @@ function fetchWordAPI(req, res) {
     .catch(err => handleError(err, res));
 }
 
+//checks if the username within the URL is a registered user before loading the fridge page
 function validateRequest(req, res) {
-  const SQL = `SELECT * FROM users WHERE user=$1;`;
+  const SQL = `SELECT * FROM users WHERE username=$1;`;
   const value = [req.params.user];
   client.query(SQL, value)
     .then(result => {
@@ -187,12 +188,12 @@ function registerUser(req, res){
   client.query(SQL, values)
     .then(results =>{
       if(results.rowCount){
-        res.send('1')
+        res.send({sucess: false});
       }
       else{
         SQL = `INSERT INTO users (username, email) VALUES ($1, $2);`;
         client.query(SQL, values)
-          .then(() => res.send('0'))
+          .then(() => res.send({sucess: true, user: req.body.username}));
       }
     })
 }
@@ -204,10 +205,10 @@ function loginUser(req, res){
   client.query(SQL, values)
     .then(results =>{
       if(results.rowCount){
-        res.send('0');
+        res.send({sucess:true, user: results.rows[0].username});
       }
       else{
-        res.send('1')
+        res.send({result: {sucess: false}})
       }
     })
 }
