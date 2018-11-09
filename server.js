@@ -39,6 +39,7 @@ app.get('/register',(req, res)=>{
 app.post('/register', registerUser);
 
 //---------------------------FRIDGE ROUTES------------------------------------------
+
 app.get('/fridge/:user', validateRequest);
 app.post('/fridge', updateMagnet);
 app.get('/update', getPositions);
@@ -147,11 +148,21 @@ function loadMagnets(req, res) {
       result.rows.forEach(element =>{
         magnets[element.type].push(element)
       })
-      res.render('./pages/community/show.ejs', {data: Object.values(magnets), url: req.url, links: ['login', 'register']});
+
+      res.render('./pages/community/show.ejs', {data: Object.values(magnets), url: req.url, links: ['login', 'register'], randomColors: getRandomColors});
+
     })
     .catch(err => handleError(err, res));
 }
-
+//
+function getRandomColors(){
+  let arr = [];
+  for(let i = 0; i<3; i++){
+    let num = Math.floor(Math.random()*10);
+    arr.push(num);
+  }
+  return parseInt(arr.join(''));
+}
 //Magnet constructor
 function Magnet(content, x, y, type_id){
   this.content = content;

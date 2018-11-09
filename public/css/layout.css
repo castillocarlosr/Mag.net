@@ -1,3 +1,4 @@
+
 body{
   margin: 0;
   padding: 0;
@@ -11,14 +12,38 @@ header{
   top: 0;
   height: 80px;
   width: 100%;
-  background-color: #999;
+  background-color: #87bdd8;
   color: white;
   
 }
+.letterMag{
+  /* background-color: red; */
+  padding-top: 5px;
+  padding-right: 3px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  text-align: center;
+  color: dodgerblue;
+  font-size: 3em;
+  font-weight: bold;
+}
+.wordMag{
+  border: 1px solid lightgrey;
+  padding: 3px;
+  background-color: yellowgreen;
+  color: white;
+}
+.memeMag{
+  border: 1px solid goldenrod;
+  padding: 3px;
+  background-color: white;
+}
+
+
 header nav .brand{
   position: relative;
   top: 2%;
-  left: -60px;  
+  left: -125px;  
 }
 header nav .brand a{
 text-decoration: none;
@@ -43,7 +68,7 @@ nav section a{
   width: 50px;
   height: 40px;
   background-color:black;
-  /* margin-right: -15px; */
+  
 }
 .toggle-btn span{
   display: block;
@@ -104,7 +129,7 @@ footer{
   bottom: 0;
   height: 90px;
   width: 100%;
-  background-color: #999;
+  background-color:  #87bdd8;
   color: white;
   
 }
@@ -152,6 +177,11 @@ mobile
      height: 75px;
 
    }
+   header nav .brand{
+    position: relative;
+    top: 2%;
+    left: -100px;  
+  }
  
  
  }

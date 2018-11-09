@@ -43,10 +43,12 @@ function loginUser(e) {
 }
 
 
-document.body.addEventListener('click', function(){
-  document.getElementById('sidebar').classList.toggle('active');
-  document.querySelector('.toggle-btn').classList.toggle('remove');
-})
+  document.body.addEventListener('click', function(){
+    document.getElementById('sidebar').classList.toggle('active');
+    document.querySelector('.toggle-btn').classList.toggle('remove');
+  })
+
+
 
 // SAVE X/Y COORDS TO DB BASED ON ID
 let savePosition = (id, x, y) => {
