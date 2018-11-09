@@ -169,6 +169,9 @@ main .form-container-register input {
   margin: 15px;
 }
 
+main section:first-child img {
+  width: 100%;
+}
 /* 
 mobile
  */
@@ -300,7 +303,8 @@ mobile
 
   main section:first-child img {
     grid-column: 1 / span 3;
-    justify-self: stretch;
+    justify-self: center;
+    width: 100%;
   }
 
   main section:last-child {
