@@ -42,11 +42,16 @@ function loginUser(e) {
     })
 }
 
+$('div.toggle-btn').on('click', function() {
+  $('#sidebar').toggleClass('active');
+  $(this).toggleClass('remove');
 
-  document.body.addEventListener('click', function(){
-    document.getElementById('sidebar').classList.toggle('active');
-    document.querySelector('.toggle-btn').classList.toggle('remove');
-  })
+})
+
+$('main').on('click', () => {
+  $('#sidebar').removeClass('active');
+  $('div.toggle-btn').removeClass('remove');
+})
 
 
 
