@@ -182,6 +182,16 @@ main .form-container-register input {
 main section:first-child img {
   width: 100%;
 }
+
+main section:last-child {
+  width: 100%;
+  
+}
+
+main section:last-child img {
+  height: 50%;
+  width: 100%;
+}
 /* 
 mobile
  */
@@ -203,24 +213,6 @@ mobile
     display: none;
   }
 }
-/*********************
-*** DESKTOP
-**********************/
-
-@media all and (min-width: 992px) {
-
-}
-
-
-
-/*********************
-*** TABLET
-**********************/
-
-@media all and (min-width: 768px) and (max-width: 991px) {
-
-}
-
 
 
 
@@ -228,7 +220,7 @@ mobile
 *** MOBILE
 **********************/
 
-@media all and (max-width: 767px) {
+@media all and (max-width: 991px) {
 
   /*********************
   *** GENERAL
@@ -304,11 +296,11 @@ mobile
   }
 
   main section:first-child h1 {
-    font-size: 5vh;
+    font-size: 3vh;
     grid-column: 2 / span 2;
     left: 0;
     position: absolute;
-    top: 15vh;
+    top: 7%;
   }
 
   main section:first-child img {
@@ -334,14 +326,14 @@ mobile
   }
 
   main section:last-child div h2 {
-    font-size: 5vh;
+    font-size: 3vh;
     grid-column: 1 / span 3;
     margin-bottom: 1vh;
     margin-top: 1vh;
   }
 
   main section:last-child div h3 {
-    font-size: 3vh;
+    font-size: 2vh;
     grid-column: 1 / span 3;
     margin-bottom: 1vh;
     margin-top: 1vh;
