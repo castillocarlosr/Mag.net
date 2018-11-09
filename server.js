@@ -21,7 +21,7 @@ app.listen(port, () => console.log(`Server running on port:${port}`));
 
 //-------------HOME ROUTE--------------------------------------------
 app.get('/', (req, res) => {
-  res.render('./index.ejs', {url: req.url, links: ['login', 'register']});
+  res.render('index.ejs', {url: req.url, links: ['login', 'register']});
 });
 
 //--------USER LOGIN ROUTES--------------------------------------------
@@ -208,7 +208,7 @@ function loginUser(req, res){
         res.send({sucess:true, user: results.rows[0].username});
       }
       else{
-        res.send({result: {sucess: false}})
+        res.send({sucess: false})
       }
     })
 }
