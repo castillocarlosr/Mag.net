@@ -3,7 +3,7 @@ body{
   margin: 0;
   padding: 0;
 }
-/* @media all and (max-width: 767px){ */
+
 header{
   display: grid;
   grid-template-columns: auto auto auto;
@@ -17,7 +17,7 @@ header{
   
 }
 .letterMag{
-  /* background-color: red; */
+  
   padding-top: 5px;
   padding-right: 3px;
   padding-bottom: 5px;
