@@ -324,6 +324,13 @@ mobile
   }
 
   main section:last-child div h2 {
+    font-size: 5vh;
+    grid-column: 1 / span 3;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+  }
+
+  main section:last-child div h3 {
     font-size: 3vh;
     grid-column: 1 / span 3;
     margin-bottom: 1vh;
