@@ -7,11 +7,11 @@
         <% for(let i = 0; i < data.length; i++) { %>
                 <% for(let j = 0; j < data[i].length; j++) { %>
                         <% if (i === 0) { %>
-                                <p id="<%= data[i][j].id %>" class="letterMag" style="position: absolute; left: <%= data[i][j].x %>vw; top: <%= data[i][j].y %>vh;color: #<%= data[i][j].color %>"><%= data[i][j].content %></p>
+                                <p id="<%= data[i][j].id %>" class="letterMag" style="position: absolute; left: <%= data[i][j].x %>px; top: <%= data[i][j].y %>px;color: #<%= data[i][j].color %>"><%= data[i][j].content %></p>
                         <% } else if (i === 1) { %>
-                                <img id="<%= data[i][j].id %>" class="memeMag" style="position: absolute; left: <%= data[i][j].x %>vw; top: <%= data[i][j].y %>vh" src="<%= data[i][j].content %>" alt="" height="100" width="100">
+                                <img id="<%= data[i][j].id %>" class="memeMag" style="position: absolute; left: <%= data[i][j].x %>px; top: <%= data[i][j].y %>px" src="<%= data[i][j].content %>" alt="" height="100" width="100">
                         <% } else { %>
-                                <p id="<%= data[i][j].id %>" class="wordMag" style="position: absolute; left: <%= data[i][j].x %>vw; top: <%= data[i][j].y %>vh" ><%= data[i][j].content %></p>
+                                <p id="<%= data[i][j].id %>" class="wordMag" style="position: absolute; left: <%= data[i][j].x %>px; top: <%= data[i][j].y %>px" ><%= data[i][j].content %></p>
                         <% } %>
                 <% } %>
         <% } %>
