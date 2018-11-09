@@ -188,6 +188,7 @@ function updateMagnet(req, res) {
   const SQL = `UPDATE magnets SET x=$2, y=$3 WHERE id=$1`
   const values = Object.values(req.body);
   client.query(SQL, values)
+    .then(() => res.sendStatus(200));
 }
 
 //Used for the GET request on the /update route so the magnets positsions will automatically refresh for anyone on the site
