@@ -31,7 +31,6 @@ app.get('/login',(req, res)=>{
 });
 app.post('/login', loginUser);
 
-
 //---------USER REGISTRATION ROUTES------------------------------------------
 app.get('/register',(req, res)=>{
   res.render('./pages/registration.ejs',{url: req.url, links: ['login', 'register']});
@@ -234,4 +233,3 @@ function handleError(err, res) {
   console.log('Oh oh error! Try unpluggin then pluggin back in', err);
   res.render('pages/error');
 }
-
