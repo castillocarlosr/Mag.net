@@ -10,4 +10,4 @@
 
 ##Stretch Goals
 - [x] Be Awesome
-- [ ] Buy domain for mag.net
+- [ ] Buy domain for mag.net someday
