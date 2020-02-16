@@ -1,5 +1,9 @@
 # Project => Mag.net
 
+#### Website (mobile view only -> reduce screen size to mobile view)
+https://hn-nj-cc-cc-mag.herokuapp.com
+
+
 ## Authors
 
 * Nicholas Crain [NJcrain](https://github.com/NJcrain)
